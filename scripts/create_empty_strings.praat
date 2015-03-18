@@ -12,7 +12,7 @@
 # A copy of the GNU General Public License is available at
 # <http://www.gnu.org/licenses/>.
 
-include ../../plugin_strutils/procedures/create_empty_strings.proc
+include ../procedures/create_empty_strings.proc
 
 form Create empty Strings...
   word Name emptyStrings

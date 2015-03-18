@@ -11,7 +11,7 @@
 # A copy of the GNU General Public License is available at
 # <http://www.gnu.org/licenses/>.
 
-include ../../plugin_strutils/procedures/replace_strings.proc
+include ../procedures/replace_strings.proc
 
 form Replace strings...
   sentence Find

@@ -12,7 +12,7 @@
 # A copy of the GNU General Public License is available at
 # <http://www.gnu.org/licenses/>.
 
-include ../../plugin_strutils/procedures/extract_strings.proc
+include ../procedures/extract_strings.proc
 
 form Extract strings...
   sentence Match_regex .*
