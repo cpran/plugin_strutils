@@ -17,7 +17,7 @@ include ../../plugin_utils/procedures/check_directory.proc
 
 form Create Strings as file list (full path)...
   word     Name fullFileList
-  sentence Path 
+  sentence Path
   sentence File_match *wav
   boolean  Keep_relative_path_list 0
 endform
