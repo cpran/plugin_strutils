@@ -16,4 +16,4 @@ This plugin defines a set of Strings utilities:
 Requirements
 ------------
 
-* [utils](https://gitlab.com/cpran/utils)
+* [utils](https://gitlab.com/cpran/plugin_utils)
