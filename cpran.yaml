@@ -4,26 +4,26 @@ Homepage: https://gitlab.com/cpran/plugin_strutils
 Version: 0.0.1
 Maintainer: José Joaquín Atria <jjatria@gmail.com>
 Depends:
-  - praat: 5.0.0+
-  - cpran/utils: 0.0.1+
-  - cpran/selection: 0.0.1+
+  praat: 5.0.0+
+  cpran/utils: 0.0.1+
+  cpran/selection: 0.0.1+
 Recommends:
 License: GPL3
 Readme: readme.md
 Description:
-  - Short: a collection of basic Strings utilities
-  - Long: >
-      Pending the eventual release of arrays, Strings are the preferred way to
-      work with lists of strings in Praat, including lines in text files,
-      directory and file listings, and many other uses.
+  Short: a collection of basic Strings utilities
+  Long: >
+    Pending the eventual release of arrays, Strings are the preferred way to
+    work with lists of strings in Praat, including lines in text files,
+    directory and file listings, and many other uses.
 
-      However, some tasks are difficult because of the lack of some arguably
-      basic features. This plugin attempts to solve this by providing commands
-      and procedures to, among others, the following tasks:
+    However, some tasks are difficult because of the lack of some arguably
+    basic features. This plugin attempts to solve this by providing commands
+    and procedures to, among others, the following tasks:
 
-      * Create empty strings
-      * Sort strings generically
-      * Replace strings
-      * Search in strings
-      * Make subsets of Strings
-      * Make file listings with full paths
+    * Create empty strings
+    * Sort strings generically
+    * Replace strings
+    * Search in strings
+    * Make subsets of Strings
+    * Make file listings with full paths
