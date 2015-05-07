@@ -25,7 +25,7 @@ Add menu command: "Objects", "New", "Create empty Strings...",                  
 ## Dynamic commands
 
 # Strings commands
-Add action command: "Strings",  0, "",         0, "", 0, "Sort (generic)...",                    "Modify -",              1, "strings/sort_strings_generic.praat"
-Add action command: "Strings",  0, "",         0, "", 0, "Replace strings...",                   "Modify -",              1, "strings/replace_strings.praat"
-Add action command: "Strings",  0, "",         0, "", 0, "Extract strings...",                   "",                      0, "strings/extract_strings.praat"
-Add action command: "Strings",  0, "",         0, "", 0, "Find in Strings...",                   "Query -",               1, "strings/find_in_strings.praat"
+Add action command: "Strings",  0, "",         0, "", 0, "Sort (generic)...",                    "Modify -",              1, "scripts/sort_strings_generic.praat"
+Add action command: "Strings",  0, "",         0, "", 0, "Replace strings...",                   "Modify -",              1, "scripts/replace_strings.praat"
+Add action command: "Strings",  0, "",         0, "", 0, "Extract strings...",                   "",                      0, "scripts/extract_strings.praat"
+Add action command: "Strings",  0, "",         0, "", 0, "Find in Strings...",                   "Query -",               1, "scripts/find_in_strings.praat"
