@@ -13,7 +13,7 @@
 # <http://www.gnu.org/licenses/>.
 
 procedure findInStrings (.search$, .regex)
-  .name$ = selected$("Strings")
+  assert selected("Strings")
   .strings = Get number of strings
   .match = 0
   for .i to .strings
@@ -21,8 +21,12 @@ procedure findInStrings (.search$, .regex)
     .match = if .regex
       ... then index_regex(.string$, .search$)
       ... else if .string$ = .search$ then .i else 0 fi fi
-    .i = if .match then .strings else .i fi
+    if .match
+      .match = .i
+      goto LAST
+    endif
   endfor
+
+  label LAST
   .return = .match
 endproc
-
