@@ -63,11 +63,11 @@ for i to n
   # Invert order for non-numeric strings first
   if !numeric_first
     selectObject(table)
-    nantable = nowarn Extract rows where column (text):
-      ..."num", "is equal to", "--undefined--"
+    nantable = nowarn Extract rows where column (text): "num",
+      ... "is equal to", "--undefined--"
     selectObject(table)
-    numtable = nowarn Extract rows where column (text):
-      ..."num", "is not equal to", "--undefined--"
+    numtable = nowarn Extract rows where column (text): "num",
+      ... "is not equal to", "--undefined--"
     removeObject(table)
     selectObject(nantable, numtable)
     table = Append
@@ -84,7 +84,7 @@ for i to n
   endfor
 
   # Clean-up
-  #removeObject(table)
+  removeObject(table)
 
   # selectObject(strings[i])
   # name$ = selected$("Strings")
