@@ -51,7 +51,10 @@ for i to n
     if !case_sensitive
       Set string value: row, "lc", replace_regex$(s$, "(.*)", "\L\1", 0)
     endif
-    Set numeric value: row, "num", number(s$)
+    # This prevents strings like "10e" from generating undefined values
+    num$ = replace_regex$(s$, "^(\d*).*", "\1", 0)
+    num = if num$ = "" then undefined else number(num$) fi
+    Set numeric value: row, "num", num
   endfor
 
   sort$ = "num " + if case_sensitive then "str" else "lc" fi
@@ -81,7 +84,7 @@ for i to n
   endfor
 
   # Clean-up
-  removeObject(table)
+  #removeObject(table)
 
   # selectObject(strings[i])
   # name$ = selected$("Strings")
