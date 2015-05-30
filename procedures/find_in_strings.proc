@@ -20,7 +20,7 @@ procedure findInStrings (.search$, .regex)
     .string$ = Get string: .i
     .match = if .regex
       ... then index_regex(.string$, .search$)
-      ... else if .string$ = .search$ then .i else 0 fi fi
+      ... else if index(.string$, .search$) then .i else 0 fi fi
     if .match
       .match = .i
       goto LAST
