@@ -1,0 +1,62 @@
+include ../../plugin_testsimple/procedures/test_simple.proc
+
+@no_plan()
+
+runScript: preferencesDirectory$ +
+  ... "/plugin_strutils/scripts/create_empty_strings.praat", "empty"
+strings = selected("Strings")
+
+letters$ = "aeiou"
+for x to length(letters$)
+  for y from 9 to 10
+    selectObject: strings
+    n = Get number of strings
+    Insert string: n+1, string$(y) + mid$(letters$, x, 1) 
+  endfor
+endfor
+for x to length(letters$)
+  selectObject: strings
+  n = Get number of strings
+  Insert string: n+1, mid$(letters$, x, 1)
+  Insert string: n+1, replace_regex$(mid$(letters$, x, 1), "([a-z]+)", "\U\1", 0)
+endfor
+n = Get number of strings
+
+runScript: preferencesDirectory$ +
+  ... "/plugin_strutils/scripts/sort_strings_generic.praat", "yes", "yes"
+a$ = Get string: 2
+b$ = Get string: 15
+
+@ok_formula: "a$ = ""9e"" and b$ = ""U""",
+  ... "sort numeric first and case sensitive"
+  
+runScript: preferencesDirectory$ +
+  ... "/plugin_strutils/scripts/sort_strings_generic.praat", "yes", "no"
+
+a$ = Get string: 2
+b$ = Get string: 15
+
+@ok_formula: "a$ = ""9e"" and b$ = ""I""",
+  ... "sort numeric first and case insensitive"
+  
+runScript: preferencesDirectory$ +
+  ... "/plugin_strutils/scripts/sort_strings_generic.praat", "no", "yes"
+  
+a$ = Get string: 2
+b$ = Get string: 15
+
+@ok_formula: "a$ = ""E"" and b$ = ""9u""",
+  ... "sort numeric last and case sensitive"
+
+runScript: preferencesDirectory$ +
+  ... "/plugin_strutils/scripts/sort_strings_generic.praat", "no", "no"
+
+a$ = Get string: 2
+b$ = Get string: 15
+
+@ok_formula: "a$ = ""a"" and b$ = ""9u""",
+  ... "sort numeric last and case insensitive"
+
+removeObject: strings
+
+@done_testing()
