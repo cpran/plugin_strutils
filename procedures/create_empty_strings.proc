@@ -18,7 +18,7 @@ procedure createEmptyStrings (.name$)
   repeat
     @pwgen(5)
     .str$ = pwgen.return$
-    .dir$ = preferencesDirectory$ + "/"
+    .dir$ = preferencesDirectory$ - "con" + "/"
     .id = Create Strings as file list: .name$, .dir$ + .str$ + "*" + .str$
     .strings = Get number of strings
     if .strings

@@ -3,7 +3,7 @@ include ../../plugin_testsimple/procedures/test_simple.proc
 
 @no_plan()
 
-runScript: preferencesDirectory$ +
+runScript: preferencesDirectory$ -"con" +
   ... "/plugin_strutils/scripts/create_empty_strings.praat", "empty"
 strings = selected("Strings")
 

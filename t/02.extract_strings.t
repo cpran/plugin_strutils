@@ -3,7 +3,7 @@ include ../../plugin_testsimple/procedures/test_simple.proc
 
 @no_plan()
 
-runScript: preferencesDirectory$ +
+runScript: preferencesDirectory$ - "con" +
   ... "/plugin_strutils/scripts/create_empty_strings.praat", "empty"
 strings = selected("Strings")
 
@@ -43,7 +43,7 @@ removeObject: part
 # Scripts
 
 selectObject: strings
-runScript: preferencesDirectory$ +
+runScript: preferencesDirectory$ - "con" +
   ... "/plugin_strutils/scripts/extract_strings.praat", ".[123]"
 if !numberOfSelected("Strings") or selected("Strings") = strings
   @bail_out: "script does not generate new strings"
@@ -57,7 +57,7 @@ n = Get number of strings
 removeObject: part
 
 selectObject: strings
-runScript: preferencesDirectory$ +
+runScript: preferencesDirectory$ - "con" +
   ... "/plugin_strutils/scripts/extract_strings.praat", "aaa"
 part = selected("Strings")
 n = Get number of strings

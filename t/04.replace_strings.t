@@ -4,7 +4,7 @@ include ../../plugin_testsimple/procedures/test_simple.proc
 
 @no_plan()
 
-runScript: preferencesDirectory$ +
+runScript: preferencesDirectory$ -"con" +
   ... "/plugin_strutils/scripts/create_empty_strings.praat", "empty"
 strings = selected("Strings")
 
@@ -37,7 +37,7 @@ after = findInStrings.return
 
 removeObject: selected("Strings")
 
-runScript: preferencesDirectory$ +
+runScript: preferencesDirectory$ -"con" +
   ... "/plugin_strutils/scripts/create_empty_strings.praat", 
   ... "empty"
 empty = selected("Strings")
@@ -55,7 +55,7 @@ selectObject: strings
 @findInStrings: "^[" + letters$ + "][0-9]", 1
 before = findInStrings.return
 
-runScript: preferencesDirectory$ +
+runScript: preferencesDirectory$ - "con" +
   ... "/plugin_strutils/scripts/replace_strings.praat",
   ... "^([" + letters$ + "])", "\1\1", 1
 if !numberOfSelected("Strings") or selected("Strings") = strings
@@ -72,12 +72,12 @@ after = findInStrings.return
 
 removeObject: selected("Strings")
 
-runScript: preferencesDirectory$ +
+runScript: preferencesDirectory$ - "con" +
   ... "/plugin_strutils/scripts/create_empty_strings.praat", 
   ... "empty"
 empty = selected("Strings")
 
-runScript: preferencesDirectory$ +
+runScript: preferencesDirectory$ - "con" +
   ... "/plugin_strutils/scripts/replace_strings.praat",
   ... "^([" + letters$ + "])", "\1\1", 1
 @ok_formula: "selected(""Strings"") and " +
