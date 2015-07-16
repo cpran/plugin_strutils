@@ -1,4 +1,4 @@
-strutils
+strutils [![build badge][badge]][build]
 ========
 
 Description
@@ -17,3 +17,6 @@ Requirements
 ------------
 
 * [utils](https://gitlab.com/cpran/plugin_utils)
+
+[badge]: https://ci.gitlab.com/projects/3252/status.png?ref=master
+[build]: https://ci.gitlab.com/projects/3252
