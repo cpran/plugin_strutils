@@ -19,8 +19,8 @@
 # runScript: "run_tests.praat"
 
 # Base menu
-Add menu command: "Objects", "New", "Create Strings as file list (full path)...", "", 0, "scripts/file_list_full_path.praat"
-Add menu command: "Objects", "New", "Create empty Strings...",                    "", 0, "scripts/create_empty_strings.praat"
+nocheck Add menu command: "Objects", "New", "Create Strings as file list (full path)...", "", 0, "scripts/file_list_full_path.praat"
+nocheck Add menu command: "Objects", "New", "Create empty Strings...",                    "", 0, "scripts/create_empty_strings.praat"
 
 ## Dynamic commands
 
