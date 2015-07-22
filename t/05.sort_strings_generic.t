@@ -2,7 +2,7 @@ include ../../plugin_testsimple/procedures/test_simple.proc
 
 @no_plan()
 
-runScript: preferencesDirectory$ +
+runScript: preferencesDirectory$ - "con" +
   ... "/plugin_strutils/scripts/create_empty_strings.praat", "empty"
 strings = selected("Strings")
 
@@ -22,7 +22,7 @@ for x to length(letters$)
 endfor
 n = Get number of strings
 
-runScript: preferencesDirectory$ +
+runScript: preferencesDirectory$ - "con" +
   ... "/plugin_strutils/scripts/sort_strings_generic.praat", "yes", "yes"
 a$ = Get string: 2
 b$ = Get string: 15
@@ -30,7 +30,7 @@ b$ = Get string: 15
 @ok_formula: "a$ = ""9e"" and b$ = ""U""",
   ... "sort numeric first and case sensitive"
   
-runScript: preferencesDirectory$ +
+runScript: preferencesDirectory$ - "con" +
   ... "/plugin_strutils/scripts/sort_strings_generic.praat", "yes", "no"
 
 a$ = Get string: 2
@@ -39,7 +39,7 @@ b$ = Get string: 15
 @ok_formula: "a$ = ""9e"" and b$ = ""I""",
   ... "sort numeric first and case insensitive"
   
-runScript: preferencesDirectory$ +
+runScript: preferencesDirectory$ - "con" +
   ... "/plugin_strutils/scripts/sort_strings_generic.praat", "no", "yes"
   
 a$ = Get string: 2
@@ -48,7 +48,7 @@ b$ = Get string: 15
 @ok_formula: "a$ = ""E"" and b$ = ""9u""",
   ... "sort numeric last and case sensitive"
 
-runScript: preferencesDirectory$ +
+runScript: preferencesDirectory$ - "con" +
   ... "/plugin_strutils/scripts/sort_strings_generic.praat", "no", "no"
 
 a$ = Get string: 2
