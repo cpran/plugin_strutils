@@ -13,7 +13,7 @@ total_strings = Get number of strings
 
 removeObject: strings
 
-runScript: preferencesDirectory$ - "con " +
+runScript: preferencesDirectory$ - "con" +
   ... "/plugin_strutils/scripts/create_empty_strings.praat", "empty"
 strings = selected("Strings")
 @ok_formula: "numberOfSelected(""Strings"") = 1",
