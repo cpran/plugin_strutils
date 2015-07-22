@@ -27,7 +27,7 @@ runScript: preferencesDirectory$ - "con" +
 a$ = Get string: 2
 b$ = Get string: 15
 
-@ok_formula: "a$ = ""9e"" and b$ = ""U""",
+@ok_formula: "a$ == ""9e"" and b$ == ""U""",
   ... "sort numeric first and case sensitive"
   
 runScript: preferencesDirectory$ - "con" +
@@ -36,7 +36,7 @@ runScript: preferencesDirectory$ - "con" +
 a$ = Get string: 2
 b$ = Get string: 15
 
-@ok_formula: "a$ = ""9e"" and b$ = ""I""",
+@ok_formula: "a$ == ""9e"" and (b$ == ""I"" or b$ == ""i"")",
   ... "sort numeric first and case insensitive"
   
 runScript: preferencesDirectory$ - "con" +
@@ -45,7 +45,7 @@ runScript: preferencesDirectory$ - "con" +
 a$ = Get string: 2
 b$ = Get string: 15
 
-@ok_formula: "a$ = ""E"" and b$ = ""9u""",
+@ok_formula: "a$ == ""E"" and b$ == ""9u""",
   ... "sort numeric last and case sensitive"
 
 runScript: preferencesDirectory$ - "con" +
@@ -54,7 +54,7 @@ runScript: preferencesDirectory$ - "con" +
 a$ = Get string: 2
 b$ = Get string: 15
 
-@ok_formula: "a$ = ""a"" and b$ = ""9u""",
+@ok_formula: "(a$ == ""a"" or a$ == ""A"") and b$ == ""9u""",
   ... "sort numeric last and case insensitive"
 
 removeObject: strings
