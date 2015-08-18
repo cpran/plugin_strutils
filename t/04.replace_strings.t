@@ -1,5 +1,5 @@
-include ../procedures/replace_strings.proc
-include ../procedures/find_in_strings.proc
+include ../../plugin_strutils/procedures/replace_strings.proc
+include ../../plugin_strutils/procedures/find_in_strings.proc
 include ../../plugin_testsimple/procedures/test_simple.proc
 
 @no_plan()

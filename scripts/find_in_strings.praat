@@ -12,7 +12,7 @@
 # A copy of the GNU General Public License is available at
 # <http://www.gnu.org/licenses/>.
 
-include ../procedures/find_in_strings.proc
+include ../../plugin_strutils/procedures/find_in_strings.proc
 
 form Find in Strings...
   sentence Search .*

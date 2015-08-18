@@ -1,4 +1,4 @@
-include ../procedures/create_empty_strings.proc
+include ../../plugin_strutils/procedures/create_empty_strings.proc
 include ../../plugin_testsimple/procedures/test_simple.proc
 
 @no_plan()

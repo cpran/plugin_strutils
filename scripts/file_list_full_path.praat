@@ -12,7 +12,7 @@
 # A copy of the GNU General Public License is available at
 # <http://www.gnu.org/licenses/>.
 
-include ../procedures/file_list_full_path.proc
+include ../../plugin_strutils/procedures/file_list_full_path.proc
 include ../../plugin_utils/procedures/check_directory.proc
 
 form Create Strings as file list (full path)...
