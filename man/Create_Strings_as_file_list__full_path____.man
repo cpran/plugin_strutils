@@ -1,0 +1,22 @@
+ManPagesTextFile
+"Create Strings as file list (full path)..." "jjatria" 20150818 0
+
+<intro> "Creates a String object with the full path of files in disk. This command internally uses the @@fileListFullPath (procedure)|fileListFullPath@ procedure."
+
+<normal> "The script takes four arguments:"
+
+<list_item> "##Name#"
+
+<definition> "The name of the new object."
+
+<list_item> "##Path#"
+
+<definition> "The path from where to get the list of files. If this field is left empty, a graphical directory selector is used to specify the path."
+
+<list_item> "##File match#"
+
+<definition> "The file matching expression. To keep a similar interface to that of the standard Strings commands, this uses the standard file globbing rules."
+
+<list_item> "##Keep relative path list#"
+
+<definition> "In the process of generating the Strings object, a normal Strings object with just the basenames is generated, but automatically removed. Activating this boolean flag keeps that object, so that in the end two Strings objects are selected, one with full paths and one with basenames."

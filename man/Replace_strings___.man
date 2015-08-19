@@ -1,0 +1,18 @@
+ManPagesTextFile
+"Replace strings..." "jjatria" 20150818 0
+
+<intro> "Executed on an existing Strings object, it generates a new Strings object in which all the instances of a search query are replaced by the specified string. The new object will have the same name as the original, with the suffix ""%%_replaced%"" appended. This command internally uses the @@replaceStrings (procedure)|replaceStrings@ procedure."
+
+<normal> "The script takes three arguments:"
+
+<list_item> "##Find#"
+
+<definition> "The expression to search."
+
+<list_item> "##Replace#"
+
+<definition> "The string to replace it with."
+
+<list_item> "##Use regular expressions#"
+
+<definition> "Activating this flag makes the ##Find# and ##Replace# fields be interpreted as regular expressions. If using regular expressions, capturing groups can be used between the two fields."

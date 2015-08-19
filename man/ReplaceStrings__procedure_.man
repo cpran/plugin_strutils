@@ -1,0 +1,31 @@
+ManPagesTextFile
+"replaceStrings (procedure)" "jjatria" 20150818 0
+
+<intro> "A procedure to perform a search-and-replace on an existing Strings object, The resulting new object will ahve all the instances of the search query replaced by the specified replace string. The new object will have the same name as the original, with the suffix ""%%_replaced%"" appended. This procedure is used by the @@Replace strings...@ command. It is defined in the $$replace_strings.proc$ file. "
+
+<entry> "Summary"
+
+<code> "\# Assuming script resides two-levels below the preferences directory"
+<code> "include ../../plugin_strutils/procedures/find_in_strings.proc"
+<code> "selectObject: sample_strings"
+<code> "\@ findInStrings: ""[aeiou]"", 1"
+<code> ""
+<code> "if findInStrings.return"
+<code> "  appendInfoLine: ""Vowel found in string number "", findInStrings.return"
+<code> "endif"
+
+<entry> "Description"
+
+<normal> "The script takes three arguments:"
+
+<list_item> "##.search\$ #"
+
+<definition> "The expression to search. Either a literal string or a regular expression."
+
+<list_item> "##.replace\$ #"
+
+<definition> "The string to replace it with. Either a literal string or a regular expression."
+
+<list_item> "##.regex#"
+
+<definition> "Settings this to true specifies the string in $$.serch\$ $ and $$.replace\$ $ as regular expressions. If using regular expressions, capturing groups can be used between the two fields."

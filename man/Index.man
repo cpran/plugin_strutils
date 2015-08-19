@@ -1,0 +1,23 @@
+ManPagesTextFile
+"strutils" "jjatria" 20150818 0
+
+<intro> "The $strutils plugin defines a set of general purpose commands for Strings objects."
+
+<entry> "Commands"
+
+<list_item> "@@Create empty Strings...@"
+<list_item> "@@Create Strings as file list (full path)...@"
+<list_item> "@@Extract strings...|Strings: Extract strings...@"
+<list_item> "@@Replace strings...|Strings: Replace strings...@"
+<list_item> "@@Find in Strings...|Strings: Find in Strings...@"
+<list_item> "@@Sort (generic)...|Strings: Sort (generic)...@"
+
+<entry> "Procedures"
+
+<normal> "In addition to the commands above, this plugin exposezs the following procedures that can be included and used programmatically in ways that give access to the internal variables used in processing. Most of these are the back-end to the commands above, and perform the same tasks, sometimes allowing for additional options and configuration."
+
+<list_item> "@@replaceStrings (procedure)|$$replaceStrings: .search\$ , .replace\$ , .regex\$ @"
+<list_item> "@@findInStrings (procedure)|$$findInStrings: .search\$ , .regex@"
+<list_item> "@@fileListFullPath (procedure)|$$fileListFullPath: .name\$ , .path\$ , .match\$ , .keep@"
+<list_item> "@@extractStrings (procedure)|$$extractStrings: .regex\$ @"
+<list_item> "@@createEmptyStrings (procedure)|$$createEmptyStrings: .name\$ @"

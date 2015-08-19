@@ -18,6 +18,9 @@
 # Uncomment next line to run tests at startup
 # runScript: "run_tests.praat"
 
+# Help
+nocheck Add menu command: "Objects", "Help", "strutils", "CPrAN", 1, "man/open.praat"
+
 # Base menu
 nocheck Add menu command: "Objects", "New", "Create Strings as file list (full path)...", "", 0, "scripts/file_list_full_path.praat"
 nocheck Add menu command: "Objects", "New", "Create empty Strings...",                    "", 0, "scripts/create_empty_strings.praat"

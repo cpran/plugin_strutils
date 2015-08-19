@@ -1,0 +1,10 @@
+ManPagesTextFile
+"Extract strings..." "jjatria" 20150818 0
+
+<intro> "Executed on an existing Strings object, it generates a new Strings object as a subset of the first. The subset contains all the strings in the first object that match the specified regular expression. The new object will have the same name as the original, with the suffix ""%%_extracted%"" appended. This command internally uses the @@extractStrings (procedure)|extractStrings@ procedure."
+
+<normal> "The script takes a single argument:"
+
+<list_item> "##Match regex#"
+
+<definition> "The regular expression to match."

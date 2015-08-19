@@ -1,0 +1,21 @@
+ManPagesTextFile
+"extractStrings (procedure)" "jjatria" 20150818 0
+
+<intro> "A procedure to extract matching strings from a Strings object. This procedure is used by the @@Extract strings...@ command. It is defined in the $$extract_strings.proc$ file. The new object will have the same name as the original object, with the $$_extracted$ suffix appended."
+
+<entry> "Summary"
+
+<code> "\# Assuming script resides two-levels below the preferences directory"
+<code> "include ../../plugin_strutils/procedures/extract_strings.proc"
+<code> "selectObject: sample_strings"
+<code> "\@ extractStrings: ""[aeiou]"""
+<code> "empty = selected(""Strings"")"
+<code> "\# Or empty = extractStrings.id"
+
+<entry> "Description"
+
+<normal> "The procedure takes one argument:"
+
+<list_item> "##.regex\$ #"
+
+<definition> "The regular expression to match."

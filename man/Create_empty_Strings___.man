@@ -1,0 +1,10 @@
+ManPagesTextFile
+"Create empty Strings..." "jjatria" 20150818 0
+
+<intro> "Creates a Strings object that is guaranteed not to have any strings. This command internally uses the @@createEmptyStrings (procedure)|createEmptyStrings@ procedure."
+
+<normal> "The script takes a single argument:"
+
+<list_item> "##Name#"
+
+<definition> "The name of the new object."

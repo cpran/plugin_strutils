@@ -1,0 +1,16 @@
+ManPagesTextFile
+"Sort (generic)..." "jjatria" 20150818 0
+
+<intro> "The standard Strings sorting algorithm uses what is called ""asciibetical"" order, which is the semi-standard ordering of the characters in the ASCII character set. This works well in most circumstances, but when sorting strings with numbers in them, the results can be more or less unexpected: if the strings to sort are ""test7"", ""test8"", ""test9"", and ""test10"", the standard algorithm will place ""test10"" before all the rest, because the sorting is done on a character-by-character way (so instead of 10 and 7, 1 and 7 are compared).."
+
+<normal> "This command attempts to fix this by implementing a generic sort, which splits numbers and strings and sorts them separately."
+
+<normal> "The script takes two arguments:"
+
+<list_item> "##Numeric first#"
+
+<definition> "If ticked, this option makes numeric strings come up earlier in the final object."
+
+<list_item> "##Case sensitive#"
+
+<definition> "Activated by default, unticking disables case-detection for sorting: before the strings are sorted, they are all converted to the same case."

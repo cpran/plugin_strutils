@@ -1,0 +1,39 @@
+ManPagesTextFile
+"fileListFullPath (procedure)" "jjatria" 20150818 0
+
+<intro> "A procedure to create a Strings object with a list of fully specified files residing on disk. This procedure is used by the @@Create Strings as file list (full path)...@ command. It is defined in the $$file_list_full_path.proc$ file. The newly created object will have the same name as the original Strings object, with the $$_extracted$ suffix appended."
+
+<entry> "Summary"
+
+<code> "\# Assuming script resides two-levels below the preferences directory"
+<code> "include ../../plugin_strutils/procedures/file_list_full_path.proc"
+<code> ""
+<code> "form Example..."
+<code> "  sentence Path /some/path"
+<code> "  sentence Match *(Sound|TextGrid)"
+<code> "enform"
+<code> ""
+<code> "selectObject: sample_strings"
+<code> "\@ fileListFullPath: ""file_list"", path$, match$, 0"
+<code> "empty = selected(""Strings"")"
+<code> "\# Or empty = extractStrings.id"
+
+<entry> "Description"
+
+<normal> "The procedure takes four arguments:"
+
+<list_item> "##.name\$ #"
+
+<definition> "The name of the new object."
+
+<list_item> "##.path\$ #"
+
+<definition> "The path from where to get the list of files. If this field is left empty, a graphical directory selector is used to specify the path."
+
+<list_item> "##.match\$ #"
+
+<definition> "The file matching expression. To keep a similar interface to that of the standard Strings commands, this uses the standard file globbing rules."
+
+<list_item> "##.keep#"
+
+<definition> "In the process of generating the Strings object, a normal Strings object with just the basenames is generated, but automatically removed. Setting this to a true value keeps that object, so that in the end two Strings objects are selected: the first one with the basenames, and the second with the full paths."

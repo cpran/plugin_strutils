@@ -1,0 +1,22 @@
+ManPagesTextFile
+"createEmptyStrings (procedure)" "jjatria" 20150818 0
+
+<intro> "A procedure to generate a new Strings object guarranteed to not have any strings in it. This procedure is used by the @@Create empty Strings...@ command. It is defined in the $$create_empty_strings.proc$ file."
+
+<entry> "Summary"
+
+<code> "\# Assuming script resides two-levels below the preferences directory"
+<code> "include ../../plugin_strutils/procedures/create_empty_strings.proc"
+<code> "\@ createEmptyStrings: ""empty"""
+<code> "empty = selected(""Strings"")"
+<code> "\# Or empty = createEmptyStrings.id"
+<code> "assert selected$(""Strings"") == ""empty"""
+<code> "assert !do(""Get number of strings..."")"
+
+<entry> "Description"
+
+<normal> "The procedure takes one argument:"
+
+<list_item> "##.name\$ #"
+
+<definition> "The name of the new object."

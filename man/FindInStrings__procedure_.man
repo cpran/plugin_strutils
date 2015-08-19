@@ -1,0 +1,27 @@
+ManPagesTextFile
+"findInStrings (procedure)" "jjatria" 20150818 0
+
+<intro> "A procedure to get the index of a string in a Strings object. The matching of the queried string is done using either a literal string or regular expressions. This procedure is used by the @@Find in Strings...@ command. It is defined in the $$find_in_strings.proc$ file. The result will be stored in the $$.return$ variable."
+
+<entry> "Summary"
+
+<code> "\# Assuming script resides two-levels below the preferences directory"
+<code> "include ../../plugin_strutils/procedures/find_in_strings.proc"
+<code> "selectObject: sample_strings"
+<code> "\@ findInStrings: ""[aeiou]"", 1"
+<code> ""
+<code> "if findInStrings.return"
+<code> "  appendInfoLine: ""Vowel found in string number "", findInStrings.return"
+<code> "endif"
+
+<entry> "Description"
+
+<normal> "The procedure takes two arguments:"
+
+<list_item> "##.search\$ #"
+
+<definition> "The expression to search. Either a literal string or a regular expression."
+
+<list_item> "##.regex#"
+
+<definition> "Setting this to true specifies the string in $$.search\$ $ as a regular expression."

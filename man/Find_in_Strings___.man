@@ -1,0 +1,14 @@
+ManPagesTextFile
+"Find in Strings..." "jjatria" 20150818 0
+
+<intro> "Executed on an existing Strings object, it will print the number of the first row that matches the specified query. This command internally uses the @@findInStrings (procedure)|findInStrings@ procedure."
+
+<normal> "The script takes two arguments:"
+
+<list_item> "##Search#"
+
+<definition> "The expression to search."
+
+<list_item> "##Use regex#"
+
+<definition> "Activating this flag makes the ##Search# field be interpreted as a regular expression."
