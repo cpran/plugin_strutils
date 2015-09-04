@@ -1,6 +1,8 @@
 include ../../plugin_strutils/procedures/create_empty_strings.proc
 include ../../plugin_testsimple/procedures/test_simple.proc
 
+preferencesDirectory$ = replace_regex$(preferencesDirectory$, "(con)?(\.(EXE|exe))?$", "", 0)
+
 @no_plan()
 
 @createEmptyStrings: "empty"
@@ -13,7 +15,7 @@ total_strings = Get number of strings
 
 removeObject: strings
 
-runScript: preferencesDirectory$ - "con" +
+runScript: preferencesDirectory$ +
   ... "/plugin_strutils/scripts/create_empty_strings.praat", "empty"
 strings = selected("Strings")
 @ok_formula: "numberOfSelected(""Strings"") = 1",

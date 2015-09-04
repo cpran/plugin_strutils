@@ -14,11 +14,13 @@
 
 include ../../plugin_utils/procedures/utils.proc
 
+preferencesDirectory$ = replace_regex$(preferencesDirectory$, "(con)?(\.(EXE|exe))?$", "", 0)
+
 procedure createEmptyStrings (.name$)
   repeat
     @pwgen(5)
     .str$ = pwgen.return$
-    .dir$ = preferencesDirectory$ - "con" + "/"
+    .dir$ = preferencesDirectory$ + "/"
     .id = Create Strings as file list: .name$, .dir$ + .str$ + "*" + .str$
     .strings = Get number of strings
     if .strings

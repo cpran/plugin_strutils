@@ -1,9 +1,11 @@
 include ../../plugin_strutils/procedures/extract_strings.proc
 include ../../plugin_testsimple/procedures/test_simple.proc
 
+preferencesDirectory$ = replace_regex$(preferencesDirectory$, "(con)?(\.(EXE|exe))?$", "", 0)
+
 @no_plan()
 
-runScript: preferencesDirectory$ - "con" +
+runScript: preferencesDirectory$ +
   ... "/plugin_strutils/scripts/create_empty_strings.praat", "empty"
 strings = selected("Strings")
 
@@ -43,7 +45,7 @@ removeObject: part
 # Scripts
 
 selectObject: strings
-runScript: preferencesDirectory$ - "con" +
+runScript: preferencesDirectory$ +
   ... "/plugin_strutils/scripts/extract_strings.praat", ".[123]"
 if !numberOfSelected("Strings") or selected("Strings") = strings
   @bail_out: "script does not generate new strings"
@@ -57,7 +59,7 @@ n = Get number of strings
 removeObject: part
 
 selectObject: strings
-runScript: preferencesDirectory$ - "con" +
+runScript: preferencesDirectory$ +
   ... "/plugin_strutils/scripts/extract_strings.praat", "aaa"
 part = selected("Strings")
 n = Get number of strings
