@@ -53,26 +53,21 @@ root = selected("Strings")
 total_subdirs = Get number of strings
 
 # Recursively call this same script
-if total_subdirs
-  if max_depth
-    for subdir to total_subdirs
-      selectObject: root
-      subdir$ = Get string: subdir
-      runScript: "recursive_directory_list_full_path.praat",
-        ... name$, subdir$, glob$, max_depth, 0
+if max_depth
+  for subdir to total_subdirs
+    selectObject: root
+    subdir$ = Get string: subdir
+    runScript: "recursive_directory_list_full_path.praat",
+      ... name$, subdir$, glob$, max_depth, 0
 
-      # If sub-directories have been found (=a Strings object is returned), then
-      # add the ID of that Strings object to the list of objects to select at
-      # the end
-      if numberOfSelected("Strings")
-        @addToSelectionTable: selection, selected("Strings")
-      endif
+    # If sub-directories have been found (=a Strings object is returned), then
+    # add the ID of that Strings object to the list of objects to select at
+    # the end
+    if numberOfSelected("Strings")
+      @addToSelectionTable: selection, selected("Strings")
+    endif
 
-    endfor
-  endif
-else
-  # If no sub-directories were found, remove the empty list
-  Remove
+  endfor
 endif
 
 # Re-select all the Strings objects that have been found so far so they can be
