@@ -1,4 +1,4 @@
-- v0.0.9: # unreleased
+- v0.0.9:
   - Improved normalisation of preferences directory
   - Included scripts for recursive and non-recursive full-path directory lists
   - Included script for recursive file lists
