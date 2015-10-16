@@ -22,13 +22,15 @@
 nocheck Add menu command: "Objects", "Help", "strutils", "CPrAN", 1, "man/open.praat"
 
 # Base menu
-nocheck Add menu command: "Objects", "New", "Create Strings as file list (full path)...", "", 0, "scripts/file_list_full_path.praat"
-nocheck Add menu command: "Objects", "New", "Create empty Strings...",                    "", 0, "scripts/create_empty_strings.praat"
+nocheck Add menu command: "Objects", "New", "Create Strings as file list (full path)...",      "", 0, "scripts/file_list_full_path.praat"
+nocheck Add menu command: "Objects", "New", "Create Strings as directory list (full path)...", "", 0, "scripts/directory_list_full_path.praat"
+nocheck Add menu command: "Objects", "New", "Create Strings as directory list (recursive)...", "", 0, "scripts/recursive_directory_list_full_path.praat"
+nocheck Add menu command: "Objects", "New", "Create empty Strings...",                         "", 0, "scripts/create_empty_strings.praat"
 
 ## Dynamic commands
 
 # Strings commands
-Add action command: "Strings",  0, "",         0, "", 0, "Sort (generic)...",                    "Modify -",              1, "scripts/sort_strings_generic.praat"
-Add action command: "Strings",  0, "",         0, "", 0, "Replace strings...",                   "Modify -",              1, "scripts/replace_strings.praat"
-Add action command: "Strings",  0, "",         0, "", 0, "Extract strings...",                   "",                      0, "scripts/extract_strings.praat"
-Add action command: "Strings",  0, "",         0, "", 0, "Find in Strings...",                   "Query -",               1, "scripts/find_in_strings.praat"
+Add action command: "Strings",  0, "", 0, "", 0, "Sort (generic)...",  "Modify -", 1, "scripts/sort_strings_generic.praat"
+Add action command: "Strings",  0, "", 0, "", 0, "Replace strings...", "Modify -", 1, "scripts/replace_strings.praat"
+Add action command: "Strings",  0, "", 0, "", 0, "Extract strings...", "",         0, "scripts/extract_strings.praat"
+Add action command: "Strings",  0, "", 0, "", 0, "Find in Strings...", "Query -",  1, "scripts/find_in_strings.praat"
