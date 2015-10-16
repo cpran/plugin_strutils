@@ -9,6 +9,7 @@ This plugin defines a set of Strings utilities:
 * Create empty Strings
 * Extract strings
 * Create Strings as file list (full path)
+* Create Strings as file list (recursive)
 * Create Strings as directory list (full path)
 * Create Strings as directory list (recursive)
 * Replace strings
