@@ -1,0 +1,24 @@
+- v0.0.9: # unreleased
+  - Improved normalisation of preferences directory
+  - Included scripts for recursive and non-recursive full-path directory lists
+  - Added this changelog
+- v0.0.8:
+  - Bug fix on ID retrieval of full-path file list
+  - Documentation is available as Praat manpage
+- v0.0.7:
+  - Improved normalisation of include paths
+- v0.0.6:
+  - Automated tests now run on Windows
+- v0.0.5:
+  - Improved normalisation of preferences directory
+  - More intuitive behaviour in generic sort (re: case-sensitivity)
+- v0.0.4:
+  - Setup now uses nocheck
+  - Implemented continuous integration for test battery
+- v0.0.3:
+  - Improved normalisation of preferences directory
+- v0.0.2:
+  - Added automated tests
+  - Multiple bug fixes
+- v0.0.1:
+  - First working version
