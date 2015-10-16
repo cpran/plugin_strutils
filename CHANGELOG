@@ -1,6 +1,8 @@
 - v0.0.9: # unreleased
   - Improved normalisation of preferences directory
   - Included scripts for recursive and non-recursive full-path directory lists
+  - Included script for recursive file lists
+  - Added local copy of GPL
   - Added this changelog
 - v0.0.8:
   - Bug fix on ID retrieval of full-path file list
