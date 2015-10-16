@@ -25,4 +25,4 @@ endform
 @checkDirectory(path$, "Read from...")
 path$ = checkDirectory.name$
 
-@directoryListFullPath(name$, path$, file_match$, keep_relative_path_list)
+@directoryListFullPath(name$, path$, glob$, keep_relative_path_list)
