@@ -40,6 +40,8 @@ endform
 # and never reach and end condition (which is what we want).
 max_depth -= 1
 
+# appendInfoLine: "Recursive directory list"
+
 @checkDirectory(left_Path_and_match$, "Read from...")
 path$ = checkDirectory.name$
 glob$ = right_Glob$

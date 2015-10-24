@@ -43,31 +43,36 @@ path$ = checkDirectory.name$
 glob$ = right_Glob$
 
 # Make a list of all directories under path
-if max_depth == 1
-  runScript: "create_empty_strings.praat", name$
-else
+if max_depth != 1
   runScript: "recursive_directory_list_full_path.praat",
     ... name$, path$, "*", max_depth - 1, 0
+  directories = selected("Strings")
+
+  # Get the list of files in each of these
+  total_dirs = Get number of strings
+  for i to total_dirs
+    selectObject: directories
+    subpath$ = Get string: i
+
+    runScript: "file_list_full_path.praat",
+      ... "file_list", subpath$, glob$, "no"
+
+    @addToSelectionTable: selection, selected("Strings")
+
+  endfor
+  nocheck removeObject: directories
 endif
-Insert string: 1, path$
-directories = selected("Strings")
 
-# Get the list of files in each of these
-total_dirs = Get number of strings
-for i to total_dirs
-  selectObject: directories
-  subpath$ = Get string: i
-
-  runScript: "file_list_full_path.praat",
-    ... "file_list", subpath$, glob$, "no"
-  @addToSelectionTable: selection, selected("Strings")
-
-endfor
-removeObject: directories
+runScript: "file_list_full_path.praat", "file_list", path$, glob$, "no"
+@addToSelectionTable: selection, selected("Strings")
 
 # Merge all partial Strings objects into a single object
 @restoreSavedSelection: selection
-new = Append
+nocheck Append
+if numberOfSelected("Strings") > 1
+  runScript: "create_empty_strings.praat", name$
+endif
+new = selected("Strings")
 @restoreSavedSelection: selection
 Remove
 removeObject: selection
