@@ -1,3 +1,5 @@
+- v0.0.10:
+  - Fixed a (memory?) bug with recursive file lists
 - v0.0.9:
   - Improved normalisation of preferences directory
   - Included scripts for recursive and non-recursive full-path directory lists
