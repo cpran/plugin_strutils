@@ -8,6 +8,12 @@ include ../../plugin_testsimple/procedures/test_simple.proc
 
 @no_plan()
 
+total_files = 10
+for i to total_files
+  @mktempfile: "strutils_", "txt"
+  tmp$[i] = mktempfile.name$
+endfor
+
 # Procedures
 
 @fileListFullPath: "full_path", preferencesDirectory$, "*", 0
@@ -19,11 +25,11 @@ endif
 strings = selected("Strings")
 n = Get number of strings
 
+@ok: n, "strings from procedure is not empty"
+
 @findInStrings: preferencesDirectory$, 0
 @ok: findInStrings.return,
   ... "strings from procedure contains path"
-
-Save as text file: "test_strings_procedure.Strings"
 
 @replaceStrings: preferencesDirectory$, "", 0
 @ok: replaceStrings.return = n,
@@ -44,16 +50,20 @@ endif
 strings = selected("Strings")
 n = Get number of strings
 
+@ok: n, "strings from script is not empty"
+
 @findInStrings: preferencesDirectory$, 0
 @ok: findInStrings.return,
   ... "strings from script contains path"
-
-Save as text file: "test_strings_script.Strings"
 
 @replaceStrings: preferencesDirectory$, "", 0
 @ok: replaceStrings.return = n,
   ... "all strings from script contain path"
 
 removeObject: selected("Strings"), strings
+
+for i to total_files
+  deleteFile: tmp$[i]
+endfor
 
 @done_testing()

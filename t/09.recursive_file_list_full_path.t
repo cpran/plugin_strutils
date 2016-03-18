@@ -10,6 +10,12 @@ endif
 
 @no_plan()
 
+total_files = 10
+for i to total_files
+  @mktempfile: "strutils_", "txt"
+  tmp$[i] = mktempfile.name$
+endfor
+
 # Scripts
 
 strutils$ = preferencesDirectory$ + "plugin_strutils/"
@@ -42,7 +48,7 @@ n = Get number of strings
 @ok: replaceStrings.return = n,
   ... "all strings from script contain path"
 
-# removeObject: selected("Strings"), strings
+removeObject: selected("Strings"), strings
 
 runScript: strutils$ + "scripts/recursive_file_list_full_path.praat",
   ... "full_path", strutils$, "*", 1, "no"
@@ -66,6 +72,10 @@ appendInfoLine: strutils$ + "t/09.recursive_file_list_full_path.t"
 @ok: !findInStrings.return,
   ... "script does not find file two levels removed with max_depth=1"
 
-# removeObject: strings
+removeObject: strings
+
+for i to total_files
+  deleteFile: tmp$[i]
+endfor
 
 @done_testing()
