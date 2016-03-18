@@ -1,12 +1,9 @@
+include ../../plugin_utils/procedures/utils.proc
 include ../../plugin_strutils/procedures/find_in_strings.proc
 include ../../plugin_strutils/procedures/replace_strings.proc
 include ../../plugin_testsimple/procedures/test_simple.proc
 
-preferencesDirectory$ = replace_regex$(preferencesDirectory$, "(con)?(\.(EXE|exe))?$", "", 0)
-preferencesDirectory$ = replace_regex$(preferencesDirectory$, "\\", "/", 0)
-if right$(preferencesDirectory$) != "/"
-  preferencesDirectory$ = preferencesDirectory$ + "/"
-endif
+@normalPrefDir()
 
 @no_plan()
 

@@ -1,7 +1,8 @@
+include ../../plugin_utils/procedures/utils.proc
 include ../../plugin_strutils/procedures/create_empty_strings.proc
 include ../../plugin_testsimple/procedures/test_simple.proc
 
-preferencesDirectory$ = replace_regex$(preferencesDirectory$, "(con)?(\.(EXE|exe))?$", "", 0)
+@normalPrefDir()
 
 @no_plan()
 

@@ -1,8 +1,9 @@
+include ../../plugin_utils/procedures/utils.proc
 include ../../plugin_strutils/procedures/replace_strings.proc
 include ../../plugin_strutils/procedures/find_in_strings.proc
 include ../../plugin_testsimple/procedures/test_simple.proc
 
-preferencesDirectory$ = replace_regex$(preferencesDirectory$, "(con)?(\.(EXE|exe))?$", "", 0)
+@normalPrefDir()
 
 @no_plan()
 
@@ -40,7 +41,7 @@ after = findInStrings.return
 removeObject: selected("Strings")
 
 runScript: preferencesDirectory$ +
-  ... "/plugin_strutils/scripts/create_empty_strings.praat", 
+  ... "/plugin_strutils/scripts/create_empty_strings.praat",
   ... "empty"
 empty = selected("Strings")
 
@@ -75,7 +76,7 @@ after = findInStrings.return
 removeObject: selected("Strings")
 
 runScript: preferencesDirectory$ +
-  ... "/plugin_strutils/scripts/create_empty_strings.praat", 
+  ... "/plugin_strutils/scripts/create_empty_strings.praat",
   ... "empty"
 empty = selected("Strings")
 

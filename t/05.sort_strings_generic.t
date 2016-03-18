@@ -1,6 +1,7 @@
+include ../../plugin_utils/procedures/utils.proc
 include ../../plugin_testsimple/procedures/test_simple.proc
 
-preferencesDirectory$ = replace_regex$(preferencesDirectory$, "(con)?(\.(EXE|exe))?$", "", 0)
+@normalPrefDir()
 
 @no_plan()
 
@@ -13,7 +14,7 @@ for x to length(letters$)
   for y from 9 to 10
     selectObject: strings
     n = Get number of strings
-    Insert string: n+1, string$(y) + mid$(letters$, x, 1) 
+    Insert string: n+1, string$(y) + mid$(letters$, x, 1)
   endfor
 endfor
 for x to length(letters$)
@@ -31,7 +32,7 @@ b$ = Get string: 15
 
 @ok_formula: "a$ == ""9e"" and b$ == ""U""",
   ... "sort numeric first and case sensitive"
-  
+
 runScript: preferencesDirectory$ - "con" +
   ... "/plugin_strutils/scripts/sort_strings_generic.praat", "yes", "no"
 
@@ -40,10 +41,10 @@ b$ = Get string: 15
 
 @ok_formula: "a$ == ""9e"" and (b$ == ""I"" or b$ == ""i"")",
   ... "sort numeric first and case insensitive"
-  
+
 runScript: preferencesDirectory$ - "con" +
   ... "/plugin_strutils/scripts/sort_strings_generic.praat", "no", "yes"
-  
+
 a$ = Get string: 2
 b$ = Get string: 15
 
