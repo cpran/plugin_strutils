@@ -1,3 +1,13 @@
+- next: # unreleased
+  - Change:
+    - Scripts for full path Strings now keep the IDs of both relative
+      and absolute lists in the `.relative` and `.absolute` variables.
+    - Outsourced directory normalisation to "utils"
+  - Fix:
+    - Added a failsafe for safer empty Strings generation
+    - In-code documentation updated and fixed throughout
+    - Minor bug fixes and code simplifications
+    - Removed some unneeded files
 - v0.0.10:
   - Fixed a (memory?) bug with recursive file lists
 - v0.0.9:
