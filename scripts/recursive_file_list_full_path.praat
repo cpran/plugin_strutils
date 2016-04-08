@@ -1,6 +1,3 @@
-# Searches for all files under a given path, and returns a Strings
-# object with the list of their names (optionally sorted).
-#
 # This script is part of the strutils CPrAN plugin for Praat.
 # The latest version is available through CPrAN or at
 # <http://cpran.net/plugins/strutils>
@@ -23,6 +20,30 @@
 include ../../plugin_utils/procedures/check_directory.proc
 include ../../plugin_selection/procedures/selection.proc
 
+#! ~~~ params
+#! in:
+#!   Name: >
+#!     (word) The name of the new Strings object.
+#!   Path: >
+#!     (sentence) The full path of the root directory for the search. If
+#!     left blank a GUI selector will be presented.
+#!   Glob: >
+#!     (sentence) Specify the pattern to match, as used in the standard
+#!     commands.
+#!   Max depth: >
+#!     (integer) Set the maximum depth of the search. A value of 0 (the
+#!     default) looks in all subdirectories until exhausting the directory
+#!     tree.
+#!   Sort: >
+#!     (boolean) If true, the resulting Strings object is sorted generically.
+#! selection:
+#!   in:
+#!     strings: ~
+#! ~~~
+#!
+#! Make a list of all matching files in the specified directory, and any of
+#! its subdirectories (up to the specified max depth).
+#!
 form Create Strings as file list (recursive)...
   word     Name recursiveFileList
   sentence left_Path_and_match ~

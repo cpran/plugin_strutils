@@ -1,7 +1,3 @@
-# Creates a Strings object which contains a subset of the strings
-# of an original Strings object. Matching of strings is done through
-# a regular expression.
-#
 # This script is part of the strutils CPrAN plugin for Praat.
 # The latest version is available through CPrAN or at
 # <http://cpran.net/plugins/strutils>
@@ -23,6 +19,25 @@
 
 include ../../plugin_strutils/procedures/find_in_strings.proc
 
+#! ~~~ params
+#! in:
+#!   Search: >
+#!     (sentence) A query for matching
+#!   Path: >
+#!     (boolean) If true (the default), the search string will be interpreted
+#!     as a regular expression pattern. Otherwise, it will be treated as a
+#!     literal string. In this case, any occurrence in any part of the string
+#!     will result in a match.
+#! selection:
+#!   in:
+#!     strings: 1
+#! ~~~
+#!
+#! Run on a single Strings object, this script performs a search for the
+#! specified string (interpreted either as a literal or as a regular expression
+#! pattern) and prints the index of the first found string to the Info window.
+#! If the string was not found, `0` is printed instead.
+#!
 form Find in Strings...
   sentence Search .*
   boolean Use_regex 1

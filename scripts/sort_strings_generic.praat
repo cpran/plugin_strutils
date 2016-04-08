@@ -1,9 +1,3 @@
-# Perform a generic sort on strings in a Strings object.
-# The standard Sort command for Strings sorts alphabetically.
-# This script tries to convert strings to numbers and uses the
-# numbers for sorting. Strings that cannot be converted to numbers
-# are sorted alphabetically.
-#
 # This script is part of the strutils CPrAN plugin for Praat.
 # The latest version is available through CPrAN or at
 # <http://cpran.net/plugins/strutils>
@@ -26,6 +20,49 @@
 include ../../plugin_utils/procedures/require.proc
 @require("5.3.44")
 
+#! ~~~ params
+#! in:
+#!   Numeric first: >
+#!     (boolean) If true, numerics appear above alphabetics. otherwise
+#!     they appear last. Defaults to true.
+#!   Case sensitive: >
+#!     (boolean) If true, uppercase and lowercase letters are treated as
+#!     different entities, with uppercase letter coming before. Defaults
+#!     to true.
+#! selection:
+#!   in:
+#!     strings: ~
+#! ~~~
+#!
+#! Perform a generic sort on a Strings object.
+#!
+#! The default `Sort` command for Strings sorts things ASCII-betically, such
+#! that uppercase letters come before lowercase, and numbers are ordered as
+#! if they were words. Since Strings often represent lists of files or
+#! directories, this is often not what one wants, specially in the case of
+#! names starting with numbers.
+#!
+#! Ordered ASCII-betically, a list like
+#!
+#!     20, Abc, 10, 1, abc, abdce, 2, Ab
+#!
+#! would become
+#!
+#!     1, 10, 2, 20, Ab, Abc, abc, abdce
+#!
+#! A generic sort treats numbers like numbers, and strings like strings, such that
+#! the previous list would be ordered in a much more intuitive way:
+#!
+#! The specifics of the ordering can be adjusted with the two boolean parameters.
+#! The first one sets the relative position of numbers (or strings that look
+#! like numbers) as a group, while the second one allows one to do a case-
+#! insensitive sort. As an example, with both values set to false (the
+#! non-default value), the above list would become
+#!
+#!     Ab, abc, Abc, abdce, 1, 2, 10, 20
+#!
+#! with the relative position of the second and third terms being unspecified.
+#!
 form Sort strings (generic)...
   boolean Numeric_first yes
   boolean Case_sensitive yes

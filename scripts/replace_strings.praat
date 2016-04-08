@@ -1,6 +1,3 @@
-# Performs an inline, regex-based, "search and replace" a Strings object
-# (procedure)
-#
 # This script is part of the strutils CPrAN plugin for Praat.
 # The latest version is available through CPrAN or at
 # <http://cpran.net/plugins/strutils>
