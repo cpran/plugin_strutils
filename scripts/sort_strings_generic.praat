@@ -44,14 +44,16 @@ include ../../plugin_utils/procedures/require.proc
 #!
 #! Ordered ASCII-betically, a list like
 #!
-#!     20, Abc, 10, 1, abc, abdce, 2, Ab
+#!     20, a10, Abc, 10, 1, a2, abc, abdce, 2, Ab, a1
 #!
 #! would become
 #!
-#!     1, 10, 2, 20, Ab, Abc, abc, abdce
+#!     1, 10, 2, 20, Ab, Abc, a1, a10, a2, abc, abdce
 #!
-#! A generic sort treats numbers like numbers, and strings like strings, such that
-#! the previous list would be ordered in a much more intuitive way:
+#! A generic sort treats numbers like numbers, and strings like strings, such
+#! that the previous list would be ordered in a much more intuitive way:
+#!
+#!     1, 2, 10, 20, Ab, Abc, a1, a2, a10, abc, abdce
 #!
 #! The specifics of the ordering can be adjusted with the two boolean parameters.
 #! The first one sets the relative position of numbers (or strings that look
@@ -59,9 +61,9 @@ include ../../plugin_utils/procedures/require.proc
 #! insensitive sort. As an example, with both values set to false (the
 #! non-default value), the above list would become
 #!
-#!     Ab, abc, Abc, abdce, 1, 2, 10, 20
+#!     a1, a2, a10, Ab, abc, Abc, abdce, 1, 2, 10, 20
 #!
-#! with the relative position of the second and third terms being unspecified.
+#! with the relative position of the fifth and sixth terms being unspecified.
 #!
 form Sort strings (generic)...
   boolean Numeric_first yes
