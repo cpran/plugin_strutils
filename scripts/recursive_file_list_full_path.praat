@@ -69,10 +69,17 @@ runScript: "file_list_full_path.praat", "file_list", path$, glob$, "no"
 # Merge all partial Strings objects into a single object
 @restoreSavedSelection: selection
 nocheck Append
+
+# Append fails with empty Strings.
+# If Append did not work, replace with an empty Strings object.
+# These objects are also fragile, and can cause Praat to crash, so it's
+# better to discard them.
+# See https://github.com/praat/praat/issues/58
 if numberOfSelected("Strings") > 1
   runScript: "create_empty_strings.praat", name$
 endif
 new = selected("Strings")
+
 @restoreSavedSelection: selection
 Remove
 removeObject: selection
