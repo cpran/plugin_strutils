@@ -19,7 +19,9 @@
 
 include ../../plugin_utils/procedures/utils.proc
 
-preferencesDirectory$ = replace_regex$(preferencesDirectory$, "(con)?(\.(EXE|exe))?$", "", 0)
+if !variableExists("strutils.loop_failsafe")
+  strutils.loop_failsafe = 100
+endif
 
 #! ~~~ params
 #! in:
@@ -34,14 +36,17 @@ preferencesDirectory$ = replace_regex$(preferencesDirectory$, "(con)?(\.(EXE|exe
 #! Creates an empty Strings object.
 #!
 procedure createEmptyStrings (.name$)
+  .i = 0
   repeat
     @pwgen(5)
     .str$ = pwgen.return$
-    .dir$ = preferencesDirectory$ + "/"
+    @normaliseDirectory: defaultDirectory$
+    .dir$ = normaliseDirectory.return$
     .id = Create Strings as file list: .name$, .dir$ + .str$ + "*" + .str$
     .strings = Get number of strings
     if .strings
       removeObject: .id
     endif
-  until !.strings
+    .i += 1
+  until !.strings or .i >= strutils.loop_failsafe
 endproc
