@@ -50,15 +50,18 @@ include ../../plugin_strutils/procedures/replace_strings.proc
 #!
 procedure fileListFullPath (.name$, .path$, .match$, .keep)
   .path$ = .path$ + if right$(.path$) != "/" then "/" else "" fi
-  .list = Create Strings as file list: .name$ + "_relpath", .path$ + .match$
+  .relative = Create Strings as file list: .name$ + "_relpath",
+    ... .path$ + .match$
   .path$ = replace_regex$(.path$, "\\", "/", 0)
   @replaceStrings("^(.*)", .path$ + "\1", 1)
+  .id = replaceStrings.id
   Rename: .name$
 
   if !.keep
-    removeObject: .list
+    removeObject: .relative
+    .relative = undefined
   else
-    plusObject: .list
+    plusObject: .relative
   endif
-  .id = replaceStrings.id
+  .absolute = .id
 endproc
