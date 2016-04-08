@@ -20,8 +20,8 @@
 #
 # Copyright 2014, 2015 Jose Joaquin Atria
 
-include ../../plugin_strutils/procedures/directory_list_full_path.proc
 include ../../plugin_utils/procedures/check_directory.proc
+include ../../plugin_strutils/procedures/directory_list_full_path.proc
 include ../../plugin_selection/procedures/selection.proc
 
 form Create Strings as directory list (recursive)...
