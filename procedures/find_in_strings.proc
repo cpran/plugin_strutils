@@ -45,10 +45,9 @@ procedure findInStrings (.search$, .regex)
       ... else if index(.string$, .search$) then .i else 0 fi fi
     if .match
       .match = .i
-      goto LAST
+      .i += .strings
     endif
   endfor
 
-  label LAST
   .return = .match
 endproc
