@@ -102,9 +102,7 @@ for i to n
 endfor
 
 # Restore selection
-if n >= 1
-  selectObject(strings[1])
-  for i from 2 to n
-    plusObject(strings[i])
-  endfor
-endif
+nocheck selectObject: undefined
+for i to n
+  plusObject(strings[i])
+endfor
