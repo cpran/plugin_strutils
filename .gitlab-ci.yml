@@ -23,22 +23,23 @@ Praat 6.0.03:
     - cpran
   allow_failure: true
 
-Praat 6.0.11:
-  script:
-    - prove -v --exec "praat-6.0.11 --ansi --pref-dir=../.. --run"
-  tags:
-    - cpran
-  allow_failure: true
-
-Praat 6.0.13:
-  script:
-    - prove -v --exec "praat-6.0.13 --ansi --pref-dir=../.. --run"
-  tags:
-    - cpran
-  allow_failure: true
-
 Praat 6.0.14:
   script:
     - prove -v --exec "praat-6.0.14 --ansi --pref-dir=../.. --run"
+  tags:
+    - cpran
+  allow_failure: true
+
+Praat 6.0.15:
+  script:
+    - prove -v --exec "praat-6.0.15 --ansi --pref-dir=../.. --run"
+  tags:
+    - cpran
+  allow_failure: true
+
+Latest:
+  script:
+    - echo "Tested $(praat --version)"
+    - prove -v --exec "praat --ansi --pref-dir=../.. --run"
   tags:
     - cpran
