@@ -35,7 +35,7 @@
 #! by modifying the value of `.regex`.
 #!
 procedure findInStrings (.search$, .regex)
-  assert selected("Strings")
+  .id = selected("Strings")
   .strings = Get number of strings
   .match = 0
   for .i to .strings
