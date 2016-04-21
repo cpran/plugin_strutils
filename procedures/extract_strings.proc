@@ -33,14 +33,15 @@
 #! of an original Strings object. Matching of strings is done through
 #! a regular expression.
 #!
-procedure extractStrings (.regex$)
+procedure extractStrings: .regex$, .match
   .name$ = selected$("Strings")
   .id = Copy: .name$ + "_extracted"
   .strings = Get number of strings
   for .j from 0 to .strings-1
     .i = .strings - .j
     .string$ = Get string: .i
-    if !index_regex(.string$, .regex$)
+    .hit = if index_regex(.string$, .regex$) then 1 else 0 fi
+    if .hit != .match
       Remove string: .i
     endif
   endfor

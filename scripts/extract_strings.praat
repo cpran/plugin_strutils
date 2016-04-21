@@ -24,7 +24,10 @@
 include ../../plugin_strutils/procedures/extract_strings.proc
 
 form Extract strings...
-  sentence Match_regex .*
+  sentence Pattern .*
+  optionmenu Extract_where_pattern 1
+    option matches
+    option does not match
 endform
 
-@extractStrings(match_regex$)
+@extractStrings: pattern$, 1 - (extract_where_pattern - 1)
