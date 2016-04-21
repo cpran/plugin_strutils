@@ -8,7 +8,6 @@ Depends:
   Plugins:
     utils: 0.0.1+
     selection: 0.0.1+
-    testsimple: 0.0.5+
 Recommends:
 License: GPL3
 Readme: readme.md
