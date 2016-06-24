@@ -1,9 +1,7 @@
 include ../../plugin_utils/procedures/utils.proc
 include ../../plugin_strutils/procedures/replace_strings.proc
 include ../../plugin_strutils/procedures/find_in_strings.proc
-include ../../plugin_testsimple/procedures/test_simple.proc
-
-@normalPrefDir()
+include ../../plugin_tap/procedures/simple.proc
 
 @no_plan()
 

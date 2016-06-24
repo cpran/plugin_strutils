@@ -1,8 +1,6 @@
 include ../../plugin_utils/procedures/utils.proc
 include ../../plugin_strutils/procedures/extract_strings.proc
-include ../../plugin_testsimple/procedures/test_simple.proc
-
-@normalPrefDir()
+include ../../plugin_tap/procedures/more.proc
 
 @no_plan()
 
