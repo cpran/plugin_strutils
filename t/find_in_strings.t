@@ -19,35 +19,35 @@ for x to length(letters$)
   endfor
 endfor
 
-@findInStrings: "^e"
+@findInStrings: "^e", 1
 @ok: !findInStrings.return,
   ... "procedure failed to find non existing string literal"
 
-@findInStrings: "e1"
+@findInStrings: "e1", 1
 @ok: findInStrings.return = length(letters$) + 1,
   ... "procedure found existing string literal"
 
-@findInStrings_regex: "a{3}"
+@findInStrings_regex: "a{3}", 1
 @ok: !findInStrings_regex.return,
   ... "procedure failed to find non existing regex"
 
-@findInStrings_regex: "^e"
+@findInStrings_regex: "^e", 1
 @ok: findInStrings_regex.return = length(letters$) + 1,
   ... "procedure found existing regex"
 
-runScript: strutils$ + "find_in_strings.praat", "^e", 0
+runScript: strutils$ + "find_in_strings.praat", "^e", "matches", 0
 @is: number(extractLine$(info$(), "")), 0,
   ... "script failed to find non existing string literal"
 
-runScript: strutils$ + "find_in_strings.praat", "e1", 0
+runScript: strutils$ + "find_in_strings.praat", "e1", "matches", 0
 @is: number(extractLine$(info$(), "")), length(letters$) + 1,
   ... "script found existing string literal"
 
-runScript: strutils$ + "find_in_strings.praat", "a{3}", 1
+runScript: strutils$ + "find_in_strings.praat", "a{3}", "matches", 1
 @is: number(extractLine$(info$(), "")), 0,
   ... "script failed to find non existing regex"
 
-runScript: strutils$ + "find_in_strings.praat", "^e", 1
+runScript: strutils$ + "find_in_strings.praat", "^e", "matches", 1
 @is: number(extractLine$(info$(), "")), length(letters$) + 1,
   ... "script found existing regex"
 

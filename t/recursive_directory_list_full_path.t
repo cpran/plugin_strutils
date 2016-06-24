@@ -24,11 +24,11 @@ n = Get number of strings
 @isnt: n, 0,
   ... "does not return empty Strings"
 
-@findInStrings: preferencesDirectory$
+@findInStrings: preferencesDirectory$, 1
 @isnt: findInStrings.return, 0,
   ... "strings from script contains path"
 
-@findInStrings: preferencesDirectory$ + "/plugin_strutils/t"
+@findInStrings: preferencesDirectory$ + "/plugin_strutils/t", 1
 @isnt: findInStrings.return, 0,
   ... "script finds sub-dir two levels removed"
 
@@ -54,7 +54,7 @@ n = Get number of strings
 @isnt: n, 0,
   ... "does not return empty Strings"
 
-@findInStrings: preferencesDirectory$ + "/plugin_strutils/t", 0
+@findInStrings: preferencesDirectory$ + "/plugin_strutils/t", 1
 @is: findInStrings.return, 0,
   ... "script does not find sub-dir two levels removed with max_depth=1"
 

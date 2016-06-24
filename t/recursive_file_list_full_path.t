@@ -33,11 +33,11 @@ n = Get number of strings
 @ok: n,
   ... "does not return empty Strings"
 
-@findInStrings: preferencesDirectory$, 0
+@findInStrings: preferencesDirectory$, 1
 @ok: findInStrings.return,
   ... "strings from script contains path"
 
-@findInStrings: strutils$ + "t/recursive_file_list_full_path.t", 0
+@findInStrings: strutils$ + "t/recursive_file_list_full_path.t", 1
 @ok: findInStrings.return,
   ... "script finds file two levels removed"
 
@@ -63,7 +63,7 @@ n = Get number of strings
 @ok: n,
   ... "does not return empty Strings"
 
-@findInStrings: strutils$ + "t/recursive_file_list_full_path.t", 0
+@findInStrings: strutils$ + "t/recursive_file_list_full_path.t", 1
 @ok: !findInStrings.return,
   ... "script does not find file two levels removed with max_depth=1"
 

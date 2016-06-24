@@ -27,7 +27,7 @@ n = Get number of strings
 
 @ok: n, "strings from procedure is not empty"
 
-@findInStrings: preferencesDirectory$, 0
+@findInStrings: preferencesDirectory$, 1
 @ok: findInStrings.return,
   ... "strings from procedure contains path"
 
@@ -52,7 +52,7 @@ n = Get number of strings
 
 @ok: n, "strings from script is not empty"
 
-@findInStrings: preferencesDirectory$, 0
+@findInStrings: preferencesDirectory$, 1
 @ok: findInStrings.return,
   ... "strings from script contains path"
 

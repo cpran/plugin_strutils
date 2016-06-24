@@ -19,7 +19,7 @@ endif
 strings = selected("Strings")
 n = Get number of strings
 
-@findInStrings: preferencesDirectory$, 0
+@findInStrings: preferencesDirectory$, 1
 @ok: findInStrings.return,
   ... "strings from procedure contains path"
 
@@ -42,7 +42,7 @@ endif
 strings = selected("Strings")
 n = Get number of strings
 
-@findInStrings: preferencesDirectory$, 0
+@findInStrings: preferencesDirectory$, 1
 @ok: findInStrings.return,
   ... "strings from script contains path"
 
