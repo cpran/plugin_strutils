@@ -1,4 +1,5 @@
 include ../../plugin_utils/procedures/utils.proc
+include ../../plugin_utils/procedures/try.proc
 include ../../plugin_strutils/procedures/extract_strings.proc
 include ../../plugin_tap/procedures/more.proc
 
@@ -131,29 +132,94 @@ Remove
 # Scripts
 
 selectObject: strings
-runScript: preferencesDirectory$ +
-  ... "/plugin_strutils/scripts/extract_strings.praat", ".[123]"
-if !numberOfSelected("Strings") or selected("Strings") = strings
-  @bail_out: "script does not generate new strings"
-endif
-part = selected("Strings")
-
-n = Get number of strings
-@ok_formula: "n = 3 * length(letters$)",
-  ... "extracted existing strings with regex"
-
-removeObject: part
+runScript: strutils$ + "extract_strings.praat", ".[123]", "matches", 0
+@is: numberOfSelected("Strings") or selected("Strings") == strings, 1,
+  ... "script generates new strings"
+Remove
 
 selectObject: strings
-runScript: preferencesDirectory$ +
-  ... "/plugin_strutils/scripts/extract_strings.praat", "aaa"
-part = selected("Strings")
-n = Get number of strings
+runScript: strutils$ + "extract_strings.praat", "", "matches", 0
+@is: do("Get number of strings"), 25,
+  ... "script matching empty literal string copies Strings"
+Remove
 
-@ok: !n,
-  ... "extracting non existing set makes empty strings"
+selectObject: strings
+runScript: strutils$ + "extract_strings.praat", "", "does not match", 0
+@is: do("Get number of strings"), 0,
+  ... "script not matching empty literal string makes empty Strings"
+Remove
 
-removeObject: part
+selectObject: strings
+call try
+  ... runScript: "'strutils$'extract_strings.praat", "a", undefined, 0
+@is: try.catch, 1,
+  ... "script does not take undefined matching flag"
+
+selectObject: strings
+call try
+  ... runScript: "'strutils$'extract_strings.praat", "a", 0, undefined
+@is: try.catch, 1,
+  ... "script does not take undefined regex flag"
+
+selectObject: strings
+runScript: strutils$ + "extract_strings.praat", "a", "matches", 0
+@is: do("Get number of strings"), 5,
+  ... "script matching literal string"
+Remove
+
+selectObject: strings
+runScript: strutils$ + "extract_strings.praat", "a", "does not match", 0
+@is: do("Get number of strings"), 20,
+  ... "script not matching literal string"
+Remove
+
+selectObject: strings
+runScript: strutils$ + "extract_strings.praat", "aa", "matches", 0
+@is: do("Get number of strings"), 0,
+  ... "script matching missing literal string makes empty Strings"
+Remove
+
+selectObject: strings
+runScript: strutils$ + "extract_strings.praat", "aa", "does not match", 0
+@is: do("Get number of strings"), 25,
+  ... "script not matching missing literal string copies Strings"
+Remove
+
+selectObject: strings
+runScript: strutils$ + "extract_strings.praat", "", "matches", 1
+@is: do("Get number of strings"), 25,
+  ... "script matching empty pattern copies Strings"
+Remove
+
+selectObject: strings
+runScript: strutils$ + "extract_strings.praat", "", "does not match", 1
+@is: do("Get number of strings"), 0,
+  ... "script not matching empty pattern makes empty Strings"
+Remove
+
+selectObject: strings
+runScript: strutils$ + "extract_strings.praat", ".[13]", "matches", 1
+@is: do("Get number of strings"), 10,
+  ... "script matching pattern"
+Remove
+
+selectObject: strings
+runScript: strutils$ + "extract_strings.praat", ".[13]", "does not match", 1
+@is: do("Get number of strings"), 15,
+  ... "script not matching pattern"
+Remove
+
+selectObject: strings
+runScript: strutils$ + "extract_strings.praat", "a{3}", "matches", 1
+@is: do("Get number of strings"), 0,
+  ... "script matching missing pattern makes empty Strings"
+Remove
+
+selectObject: strings
+runScript: strutils$ + "extract_strings.praat", "a{3}", "does not match", 1
+@is: do("Get number of strings"), 25,
+  ... "script not matching missing pattern copies Strings"
+Remove
 
 removeObject: strings
 
