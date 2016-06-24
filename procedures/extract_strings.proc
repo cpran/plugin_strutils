@@ -39,7 +39,7 @@
 #! regular expression matching, use @extractStrings_regex
 #!
 procedure extractStrings: .search$, .match
-  @_extractStrings: .search$, 0, .match
+  @_extractStrings: .search$, .match, 0
   .id = '_extractStrings.id'
   .return = '_extractStrings.return'
 endproc
@@ -66,7 +66,7 @@ endproc
 #! pattern. For matching with literal strings, use @extractStrings
 #!
 procedure extractStrings_regex: .regex$, .match
-  @_extractStrings: .regex$, 1, .match
+  @_extractStrings: .regex$, .match, 1
   .id = '_extractStrings.id'
   .return = '_extractStrings.return'
 endproc
@@ -75,12 +75,12 @@ endproc
 #! in:
 #!   .search$: >
 #!     A regular expression pattern to match.
-#!   .regex: >
-#!     If true, interpret search query as regular expression pattern.
-#!     Otherwise treat as string literal
 #!   .match: >
 #!     If set to true, the resulting Strings object will hold matching
 #!     strings. Otherwise, it will hold strings that did not match.
+#!   .regex: >
+#!     If true, interpret search query as regular expression pattern.
+#!     Otherwise treat as string literal
 #! out:
 #!   .id: The ID of the resulting Strings object
 #!   .return: The number of strings in the new Strings object
@@ -96,7 +96,7 @@ endproc
 #! of an original Strings object. Matching of strings is done through
 #! a regular expression.
 #!
-procedure _extractStrings: .search$, .regex, .match
+procedure _extractStrings: .search$, .match, .regex
   .name$ = selected$("Strings")
   .id = Copy: .name$ + "_extracted"
   .strings = Get number of strings
