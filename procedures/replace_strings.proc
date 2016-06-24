@@ -21,9 +21,68 @@
 #! in:
 #!   .search$:  Query string
 #!   .replace$: Replacement string
+#!   .number:   How many replacements to make (all if 0)
+#! out:
+#!   .id: ID of new Strings object
+#!   .return: Number of replaced strings
+#! selection:
+#!   in:
+#!     strings: 1
+#!   out:
+#!     strings: 1
+#! ~~~
+#!
+#! Takes a Strings object and performs a "search and replace" operation upon
+#! it. The modifications are done on a separate Strings object, leaving the
+#! original untouched.
+#!
+#! The string matching is done using string literals (which will match if
+#! the occur anywhere in the string). To use regular expression patterns, use
+#! @replaceStrings_regex
+#!
+procedure replaceStrings (.search$, .replace$, .number)
+  @_replaceStrings: .search$, .replace$, .number, 0
+  .id = '_replaceStrings.id'
+  .return = '_replaceStrings.return'
+endproc
+
+#! ~~~ params
+#! in:
+#!   .search$:  Query string
+#!   .replace$: Replacement string
+#!   .number:   How many replacements to make (all if 0)
+#! out:
+#!   .id: ID of new Strings object
+#!   .return: Number of replaced strings
+#! selection:
+#!   in:
+#!     strings: 1
+#!   out:
+#!     strings: 1
+#! ~~~
+#!
+#! Takes a Strings object and performs a "search and replace" operation upon
+#! it. The modifications are done on a separate Strings object, leaving the
+#! original untouched.
+#!
+#! The string matching is done using regular expression patterns. To use
+#! literal strings, use @replaceStrings
+#!
+procedure replaceStrings_regex (.search$, .replace$, .number)
+  @_replaceStrings: .search$, .replace$, .number, 1
+  .id = '_replaceStrings.id'
+  .return = '_replaceStrings.return'
+endproc
+
+#! ~~~ params
+#! in:
+#!   .search$:  Query string
+#!   .replace$: Replacement string
+#!   .number:   How many replacements to make (all if 0)
 #!   .regex: >
 #!     Boolean flag. If true, interpret query string as regular expression
 #! out:
+#!   .id: ID of new Strings object
 #!   .return: Number of replaced strings
 #! selection:
 #!   in:
@@ -40,7 +99,7 @@
 #! the occur anywhere in the string), or regular expression patterns. This
 #! behaviour can be adjusted by modifying the value of `.regex`.
 #!
-procedure replaceStrings (.search$, .replace$, .regex)
+procedure _replaceStrings (.search$, .replace$, .number, .regex)
   .name$ = selected$("Strings")
   .id = Copy: .name$ + "_replaced"
   .strings = Get number of strings
@@ -49,10 +108,10 @@ procedure replaceStrings (.search$, .replace$, .regex)
     .string$ = Get string: .i
     if .regex
       .return += if index_regex(.string$, .search$) then 1 else 0 fi
-      .string$ = replace_regex$(.string$, .search$, .replace$, 0)
+      .string$ = replace_regex$(.string$, .search$, .replace$, .number)
     else
       .return += if index(.string$, .search$) then 1 else 0 fi
-      .string$ = replace$(.string$, .search$, .replace$, 0)
+      .string$ = replace$(.string$, .search$, .replace$, .number)
     endif
     Set string: .i, .string$
   endfor
