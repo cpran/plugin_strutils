@@ -53,8 +53,8 @@ procedure directoryListFullPath (.name$, .path$, .match$, .keep)
   .relative = Create Strings as directory list: .name$ + "_relpath",
     ... .path$ + .match$
   .path$ = replace_regex$(.path$, "\\", "/", 0)
-  @replaceStrings("^(.*)/?", .path$ + "\1/", 1)
-  .id = replaceStrings.id
+  @replaceStrings_regex("^(.*)/?", .path$ + "\1/", 0)
+  .id = replaceStrings_regex.id
   Rename: .name$
 
   if !.keep

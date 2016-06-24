@@ -85,4 +85,6 @@ removeObject: selected("Strings"), empty
 
 removeObject: strings
 
+@ok_selection()
+
 @done_testing()
