@@ -3,9 +3,14 @@
     - Scripts for full path Strings now keep the IDs of both relative
       and absolute lists in the `.relative` and `.absolute` variables.
     - Outsourced directory normalisation to "utils"
-    - (Breaking) Commands and procedures to extract strings now take 2
-      arguments instead of one: in addition to pattern, they now take a
-      flag for positive or negative matches
+    - (Breaking) New and more systematic interface for procedures for finding,
+      replacing, and extracting strings:
+      - Procedures are separated into `<name>` and `<name>_regex`, to mimic
+        the Praat interface
+      - Finding and extracting procedures take 2 arguments: the query and
+        a boolean flag for positive or negative matching
+      - Replacing procedures take 3 arguents: the search query, the replacement,
+        and the number of replacements, like `replace()` or `replace_regex()`
   - Fix:
     - Added a failsafe for safer empty Strings generation
     - In-code documentation updated and fixed throughout
