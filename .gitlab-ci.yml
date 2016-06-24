@@ -3,8 +3,8 @@ variables:
 
 before_script:
   - pushd ..
-  - rm -rf plugin_{testsimple,utils,selection}
-  - git clone ${CPRAN_GIT}testsimple.git
+  - rm -rf plugin_{tap,utils,selection}
+  - git clone ${CPRAN_GIT}tap.git
   - git clone ${CPRAN_GIT}utils.git
   - git clone ${CPRAN_GIT}selection.git
   - popd
@@ -23,23 +23,22 @@ Praat 6.0.03:
     - cpran
   allow_failure: true
 
-Praat 6.0.14:
+Praat 6.0.17:
   script:
-    - prove -v --exec "praat-6.0.14 --ansi --pref-dir=../.. --run"
+    - prove -v --exec "praat-6.0.17 --ansi --pref-dir=../.. --run"
   tags:
     - cpran
   allow_failure: true
 
-Praat 6.0.15:
+Praat 6.0.18:
   script:
-    - prove -v --exec "praat-6.0.15 --ansi --pref-dir=../.. --run"
+    - prove -v --exec "praat-6.0.18 --ansi --pref-dir=../.. --run"
   tags:
     - cpran
   allow_failure: true
 
-Latest:
+Praat 6.0.19:
   script:
-    - echo "Tested $(praat --version)"
-    - prove -v --exec "praat --ansi --pref-dir=../.. --run"
+    - prove -v --exec "praat-6.0.19 --ansi --pref-dir=../.. --run"
   tags:
     - cpran
