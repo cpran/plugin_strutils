@@ -43,6 +43,10 @@ form Find in Strings...
   boolean Use_regex 1
 endform
 
-@findInStrings(search$, use_regex)
-
-writeInfoLine: findInStrings.return
+if use_regex
+  @findInStrings_regex: search$
+  writeInfoLine: findInStrings_regex.return
+else
+  @findInStrings: search$
+  writeInfoLine: findInStrings.return
+endif
