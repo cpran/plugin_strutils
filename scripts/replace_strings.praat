@@ -22,7 +22,12 @@ include ../../plugin_strutils/procedures/replace_strings.proc
 form Replace strings...
   sentence Find
   sentence Replace
+  integer How_many_replacements 0 (= all)
   boolean Use_regular_expressions 1
 endform
 
-@replaceStrings(find$, replace$, use_regular_expressions)
+if use_regular_expressions
+  @replaceStrings_regex: find$, replace$, how_many_replacements
+else
+  @replaceStrings: find$, replace$, how_many_replacements
+endif
