@@ -19,15 +19,22 @@
 # You should have received a copy of the GNU General Public License
 # along with strutils. If not, see <http://www.gnu.org/licenses/>.
 #
-# Copyright 2014, 2015 Jose Joaquin Atria
+# Copyright 2014-2016 Jose Joaquin Atria
 
 include ../../plugin_strutils/procedures/extract_strings.proc
 
 form Extract strings...
-  sentence Pattern .*
-  optionmenu Extract_where_pattern 1
+  sentence Search .*
+  optionmenu Extract_where_string 1
     option matches
     option does not match
+  boolean Use_regex 1
 endform
 
-@extractStrings: pattern$, 1 - (extract_where_pattern - 1)
+matches = if extract_where_string$ == "matches" then 1 else 0 fi
+
+if use_regex
+  @extractStrings_regex: search$, matches
+else
+  @extractStrings:       search$, matches
+endif
