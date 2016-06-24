@@ -1,64 +1,61 @@
 include ../../plugin_utils/procedures/utils.proc
 include ../../plugin_strutils/procedures/find_in_strings.proc
 include ../../plugin_strutils/procedures/replace_strings.proc
-include ../../plugin_tap/procedures/simple.proc
-
-@normalPrefDir()
+include ../../plugin_tap/procedures/more.proc
 
 @no_plan()
 
 # Scripts
 
-runScript: preferencesDirectory$ +
-  ... "plugin_strutils/scripts/recursive_directory_list_full_path.praat",
+strutils$ = preferencesDirectory$ + "/plugin_strutils/scripts/"
+runScript: strutils$ + "recursive_directory_list_full_path.praat",
   ... "full_path", preferencesDirectory$, "*", 0, "no"
 
 if !numberOfSelected("Strings")
   @bail_out: "script does not generate strings"
 endif
 
-@ok_formula: "numberOfSelected(""Strings"") == 1",
+@is: numberOfSelected("Strings"), 1,
   ... "returns only one Strings object"
 
 strings = selected("Strings")
 n = Get number of strings
 
-@ok: n,
+@isnt: n, 0,
   ... "does not return empty Strings"
 
-@findInStrings: preferencesDirectory$, 0
-@ok: findInStrings.return,
+@findInStrings: preferencesDirectory$
+@isnt: findInStrings.return, 0,
   ... "strings from script contains path"
 
-@findInStrings: preferencesDirectory$ + "plugin_strutils/t", 0
-@ok: findInStrings.return,
+@findInStrings: preferencesDirectory$ + "/plugin_strutils/t"
+@isnt: findInStrings.return, 0,
   ... "script finds sub-dir two levels removed"
 
 @replaceStrings: preferencesDirectory$, "", 0
-@ok: replaceStrings.return = n,
+@is: replaceStrings.return, n,
   ... "all strings from script contain path"
 
 removeObject: selected("Strings"), strings
 
-runScript: preferencesDirectory$ +
-  ... "plugin_strutils/scripts/recursive_directory_list_full_path.praat",
+runScript: strutils$ + "recursive_directory_list_full_path.praat",
   ... "full_path", preferencesDirectory$, "*", 1, "no"
 
 if !numberOfSelected("Strings")
   @bail_out: "script does not generate strings"
 endif
 
-@ok_formula: "numberOfSelected(""Strings"") == 1",
+@is: numberOfSelected("Strings"), 1,
   ... "returns only one Strings object"
 
 strings = selected("Strings")
 n = Get number of strings
 
-@ok: n,
+@isnt: n, 0,
   ... "does not return empty Strings"
 
-@findInStrings: preferencesDirectory$ + "plugin_strutils/t", 0
-@ok: !findInStrings.return,
+@findInStrings: preferencesDirectory$ + "/plugin_strutils/t", 0
+@is: findInStrings.return, 0,
   ... "script does not find sub-dir two levels removed with max_depth=1"
 
 removeObject: strings
