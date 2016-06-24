@@ -19,6 +19,42 @@
 
 #! ~~~ params
 #! in:
+#!   .search$: Literal string to match
+#! out:
+#!   .return: Index of first matching string if found, 0 if not
+#! selection:
+#!   in:
+#!     strings: 1
+#! ~~~
+#!
+#! Searches for a literal string in a Strings object. For matching with regular
+#! expressions, use @findInStrings_regex
+#!
+procedure findInStrings (.search$)
+  @_findInStrings: .search$, 0
+  .return = '_findInStrings.return'
+endproc
+
+#! ~~~ params
+#! in:
+#!   .regex$:  Regular expression pattern
+#! out:
+#!   .return: Index of first matching string if found, 0 if not
+#! selection:
+#!   in:
+#!     strings: 1
+#! ~~~
+#!
+#! Searches a Strings object for matches to a regular expression pattern. For
+#! matches with literal strings, use @findInStrings.
+#!
+procedure findInStrings_regex (.regex$)
+  @_findInStrings: .regex$, 1
+  .return = '_findInStrings.return'
+endproc
+
+#! ~~~ params
+#! in:
 #!   .search$:  Query string
 #!   .regex: >
 #!     Boolean flag. If true, interpret query string as regular expression
@@ -27,6 +63,7 @@
 #! selection:
 #!   in:
 #!     strings: 1
+#! internal: true
 #! ~~~
 #!
 #! Searches for a string in a Strings object. The string matching can be
@@ -34,15 +71,16 @@
 #! string), or regular expression patterns. This behaviour can be adjusted
 #! by modifying the value of `.regex`.
 #!
-procedure findInStrings (.search$, .regex)
+procedure _findInStrings (.search$, .regex)
   .id = selected("Strings")
   .strings = Get number of strings
   .match = 0
   for .i to .strings
     .string$ = Get string: .i
+
     .match = if .regex
       ... then index_regex(.string$, .search$)
-      ... else if index(.string$, .search$) then .i else 0 fi fi
+      ... else if index(.string$, .search$) then 1 else 0 fi fi
     if .match
       .match = .i
       .i += .strings
