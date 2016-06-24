@@ -1,13 +1,13 @@
 include ../../plugin_utils/procedures/utils.proc
 include ../../plugin_strutils/procedures/find_in_strings.proc
-include ../../plugin_testsimple/procedures/test_simple.proc
+include ../../plugin_tap/procedures/more.proc
 
 @normalPrefDir()
 
 @no_plan()
 
-runScript: preferencesDirectory$ +
-  ... "/plugin_strutils/scripts/create_empty_strings.praat", "empty"
+strutils$ = preferencesDirectory$ + "/plugin_strutils/scripts/"
+runScript: strutils$ + "create_empty_strings.praat", "empty"
 strings = selected("Strings")
 
 letters$ = "aeiou"
@@ -19,21 +19,37 @@ for x to length(letters$)
   endfor
 endfor
 
-@findInStrings: "^e", 0
+@findInStrings: "^e"
 @ok: !findInStrings.return,
-  ... "failed to find non existing string literal"
+  ... "procedure failed to find non existing string literal"
 
-@findInStrings: "e1", 0
-@ok_formula: "findInStrings.return = length(letters$) + 1",
-  ... "found existing string literal"
+@findInStrings: "e1"
+@ok: findInStrings.return = length(letters$) + 1,
+  ... "procedure found existing string literal"
 
-@findInStrings: "a{3}", 1
-@ok: !findInStrings.return,
-  ... "failed to find non existing regex"
+@findInStrings_regex: "a{3}"
+@ok: !findInStrings_regex.return,
+  ... "procedure failed to find non existing regex"
 
-@findInStrings: "^e", 1
-@ok_formula: "findInStrings.return = length(letters$) + 1",
-  ... "found existing regex"
+@findInStrings_regex: "^e"
+@ok: findInStrings_regex.return = length(letters$) + 1,
+  ... "procedure found existing regex"
+
+runScript: strutils$ + "find_in_strings.praat", "^e", 0
+@is: number(extractLine$(info$(), "")), 0,
+  ... "script failed to find non existing string literal"
+
+runScript: strutils$ + "find_in_strings.praat", "e1", 0
+@is: number(extractLine$(info$(), "")), length(letters$) + 1,
+  ... "script found existing string literal"
+
+runScript: strutils$ + "find_in_strings.praat", "a{3}", 1
+@is: number(extractLine$(info$(), "")), 0,
+  ... "script failed to find non existing regex"
+
+runScript: strutils$ + "find_in_strings.praat", "^e", 1
+@is: number(extractLine$(info$(), "")), length(letters$) + 1,
+  ... "script found existing regex"
 
 removeObject: strings
 
