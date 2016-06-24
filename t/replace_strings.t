@@ -5,8 +5,8 @@ include ../../plugin_tap/procedures/simple.proc
 
 @no_plan()
 
-runScript: preferencesDirectory$ +
-  ... "/plugin_strutils/scripts/create_empty_strings.praat", "empty"
+strutils$ = preferencesDirectory$ + "/plugin_strutils/scripts/"
+runScript: strutils$ + "create_empty_strings.praat", "empty"
 strings = selected("Strings")
 
 letters$ = "aeiou"
@@ -21,31 +21,29 @@ endfor
 # Procedures
 
 selectObject: strings
-@findInStrings: "^[" + letters$ + "][0-9]", 1
-before = findInStrings.return
+@findInStrings_regex: "^[" + letters$ + "][0-9]", 1
+before = findInStrings_regex.return
 
 @replaceStrings: "^([" + letters$ + "])", "\1\1", 1
 if !numberOfSelected("Strings") or selected("Strings") = strings
   @bail_out: "procedure does not generate new strings"
 endif
-@findInStrings: "^[" + letters$ + "][0-9]", 1
-after = findInStrings.return
+@findInStrings_regex: "^[" + letters$ + "][0-9]", 1
+after = findInStrings_regex.return
 
 @ok: before != after,
   ... "procedure made changes to strings"
+
 @ok: !after,
   ... "procedure replaced all strings"
 
 removeObject: selected("Strings")
 
-runScript: preferencesDirectory$ +
-  ... "/plugin_strutils/scripts/create_empty_strings.praat",
-  ... "empty"
+runScript: strutils$ + "create_empty_strings.praat", "empty"
 empty = selected("Strings")
 
 @replaceStrings: "^([" + letters$ + "])", "\1\1", 1
-@ok_formula: "selected(""Strings"") and " +
-  ...        "selected(""Strings"") != empty",
+@ok: selected("Strings") and selected("Strings") != empty,
   ... "works on empty strings"
 
 removeObject: selected("Strings"), empty
@@ -53,36 +51,34 @@ removeObject: selected("Strings"), empty
 # Scripts
 
 selectObject: strings
-@findInStrings: "^[" + letters$ + "][0-9]", 1
-before = findInStrings.return
+@findInStrings_regex: "^[" + letters$ + "][0-9]", 1
+before = findInStrings_regex.return
 
-runScript: preferencesDirectory$ +
-  ... "/plugin_strutils/scripts/replace_strings.praat",
+runScript: strutils$ + "replace_strings.praat",
   ... "^([" + letters$ + "])", "\1\1", 1
+
 if !numberOfSelected("Strings") or selected("Strings") = strings
   @bail_out: "procedure does not generate new strings"
 endif
 
-@findInStrings: "^[" + letters$ + "][0-9]", 1
-after = findInStrings.return
+@findInStrings_regex: "^[" + letters$ + "][0-9]", 1
+after = findInStrings_regex.return
 
 @ok: before != after,
   ... "script made changes to strings"
+
 @ok: !after,
   ... "script replaced all strings"
 
 removeObject: selected("Strings")
 
-runScript: preferencesDirectory$ +
-  ... "/plugin_strutils/scripts/create_empty_strings.praat",
-  ... "empty"
+runScript: strutils$ + "create_empty_strings.praat", "empty"
 empty = selected("Strings")
 
-runScript: preferencesDirectory$ +
-  ... "/plugin_strutils/scripts/replace_strings.praat",
+runScript: strutils$ + "replace_strings.praat",
   ... "^([" + letters$ + "])", "\1\1", 1
-@ok_formula: "selected(""Strings"") and " +
-  ...        "selected(""Strings"") != empty",
+
+@ok: selected("Strings") and selected("Strings") != empty,
   ... "works on empty strings"
 
 removeObject: selected("Strings"), empty
