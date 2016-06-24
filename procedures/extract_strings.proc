@@ -19,9 +19,14 @@
 
 #! ~~~ params
 #! in:
-#!   .regex$: A regular expression pattern to match.
+#!   .search$: >
+#!     A literal string to match
+#!   .match: >
+#!     If set to true, the resulting Strings object will hold matching
+#!     strings. Otherwise, it will hold strings that did not match.
 #! out:
 #!   .id: The ID of the resulting Strings object
+#!   .return: The number of strings in the new Strings object
 #! selection:
 #!   in:
 #!     strings: 1
@@ -30,19 +35,82 @@
 #! ~~~
 #!
 #! Creates a Strings object which contains a subset of the strings
+#! of an original Strings object. Search query is a literal string. For
+#! regular expression matching, use @extractStrings_regex
+#!
+procedure extractStrings: .search$, .match
+  @_extractStrings: .search$, 0, .match
+  .id = '_extractStrings.id'
+  .return = '_extractStrings.return'
+endproc
+
+#! ~~~ params
+#! in:
+#!   .regex$: >
+#!     A regular expression pattern to match
+#!   .match: >
+#!     If set to true, the resulting Strings object will hold matching
+#!     strings. Otherwise, it will hold strings that did not match.
+#! out:
+#!   .id: The ID of the resulting Strings object
+#!   .return: The number of strings in the new Strings object
+#! selection:
+#!   in:
+#!     strings: 1
+#!   out:
+#!     strings: 1
+#! ~~~
+#!
+#! Creates a Strings object which contains a subset of the strings
+#! of an original Strings object. Search queary is a regular expression
+#! pattern. For matching with literal strings, use @extractStrings
+#!
+procedure extractStrings_regex: .regex$, .match
+  @_extractStrings: .regex$, 1, .match
+  .id = '_extractStrings.id'
+  .return = '_extractStrings.return'
+endproc
+
+#! ~~~ params
+#! in:
+#!   .search$: >
+#!     A regular expression pattern to match.
+#!   .regex: >
+#!     If true, interpret search query as regular expression pattern.
+#!     Otherwise treat as string literal
+#!   .match: >
+#!     If set to true, the resulting Strings object will hold matching
+#!     strings. Otherwise, it will hold strings that did not match.
+#! out:
+#!   .id: The ID of the resulting Strings object
+#!   .return: The number of strings in the new Strings object
+#! selection:
+#!   in:
+#!     strings: 1
+#!   out:
+#!     strings: 1
+#! internal: true
+#! ~~~
+#!
+#! Creates a Strings object which contains a subset of the strings
 #! of an original Strings object. Matching of strings is done through
 #! a regular expression.
 #!
-procedure extractStrings: .regex$, .match
+procedure _extractStrings: .search$, .regex, .match
   .name$ = selected$("Strings")
   .id = Copy: .name$ + "_extracted"
   .strings = Get number of strings
   for .j from 0 to .strings-1
     .i = .strings - .j
     .string$ = Get string: .i
-    .hit = if index_regex(.string$, .regex$) then 1 else 0 fi
+    if .regex
+      .hit = if index_regex(.string$, .search$) then 1 else 0 fi
+    else
+      .hit = if index(.string$, .search$) then 1 else 0 fi
+    endif
     if .hit != .match
       Remove string: .i
     endif
   endfor
+  .return = Get number of strings
 endproc
