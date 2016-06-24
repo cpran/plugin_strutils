@@ -54,7 +54,7 @@ if !numberOfSelected("Strings")
   @bail_out: "script does not generate strings"
 endif
 
-@ok_formula: "numberOfSelected(""Strings"") == 1",
+@ok: numberOfSelected("Strings") == 1,
   ... "returns only one Strings object"
 
 strings = selected("Strings")
