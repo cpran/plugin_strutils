@@ -24,7 +24,7 @@ selectObject: strings
 @findInStrings_regex: "^[" + letters$ + "][0-9]", 1
 before = findInStrings_regex.return
 
-@replaceStrings: "^([" + letters$ + "])", "\1\1", 1
+@replaceStrings_regex: "^([" + letters$ + "])", "\1\1", 0
 if !numberOfSelected("Strings") or selected("Strings") = strings
   @bail_out: "procedure does not generate new strings"
 endif
@@ -42,7 +42,7 @@ removeObject: selected("Strings")
 runScript: strutils$ + "create_empty_strings.praat", "empty"
 empty = selected("Strings")
 
-@replaceStrings: "^([" + letters$ + "])", "\1\1", 1
+@replaceStrings_regex: "^([" + letters$ + "])", "\1\1", 0
 @ok: selected("Strings") and selected("Strings") != empty,
   ... "works on empty strings"
 
@@ -55,7 +55,7 @@ selectObject: strings
 before = findInStrings_regex.return
 
 runScript: strutils$ + "replace_strings.praat",
-  ... "^([" + letters$ + "])", "\1\1", 1
+  ... "^([" + letters$ + "])", "\1\1", 0, 1
 
 if !numberOfSelected("Strings") or selected("Strings") = strings
   @bail_out: "procedure does not generate new strings"
@@ -76,7 +76,7 @@ runScript: strutils$ + "create_empty_strings.praat", "empty"
 empty = selected("Strings")
 
 runScript: strutils$ + "replace_strings.praat",
-  ... "^([" + letters$ + "])", "\1\1", 1
+  ... "^([" + letters$ + "])", "\1\1", 0, 1
 
 @ok: selected("Strings") and selected("Strings") != empty,
   ... "works on empty strings"
