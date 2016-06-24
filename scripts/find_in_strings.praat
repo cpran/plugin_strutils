@@ -40,13 +40,18 @@ include ../../plugin_strutils/procedures/find_in_strings.proc
 #!
 form Find in Strings...
   sentence Search .*
+  optionmenu Find_string_that 1
+    option matches
+    option does not match
   boolean Use_regex 1
 endform
 
+matches = if find_string_that$ == "matches" then 1 else 0 fi
+
 if use_regex
-  @findInStrings_regex: search$
+  @findInStrings_regex: search$, matches
   writeInfoLine: findInStrings_regex.return
 else
-  @findInStrings: search$
+  @findInStrings: search$, matches
   writeInfoLine: findInStrings.return
 endif
