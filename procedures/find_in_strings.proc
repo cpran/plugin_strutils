@@ -30,8 +30,8 @@
 #! Searches for a literal string in a Strings object. For matching with regular
 #! expressions, use @findInStrings_regex
 #!
-procedure findInStrings (.search$)
-  @_findInStrings: .search$, 0
+procedure findInStrings (.search$, .match)
+  @_findInStrings: .search$, .match, 0
   .return = '_findInStrings.return'
 endproc
 
@@ -48,8 +48,8 @@ endproc
 #! Searches a Strings object for matches to a regular expression pattern. For
 #! matches with literal strings, use @findInStrings.
 #!
-procedure findInStrings_regex (.regex$)
-  @_findInStrings: .regex$, 1
+procedure findInStrings_regex (.regex$, .match)
+  @_findInStrings: .regex$, .match, 1
   .return = '_findInStrings.return'
 endproc
 
@@ -71,21 +71,23 @@ endproc
 #! string), or regular expression patterns. This behaviour can be adjusted
 #! by modifying the value of `.regex`.
 #!
-procedure _findInStrings (.search$, .regex)
+procedure _findInStrings (.search$, .match, .regex)
   .id = selected("Strings")
   .strings = Get number of strings
-  .match = 0
+
+  .return = 0
   for .i to .strings
     .string$ = Get string: .i
 
-    .match = if .regex
-      ... then index_regex(.string$, .search$)
-      ... else if index(.string$, .search$) then 1 else 0 fi fi
-    if .match
-      .match = .i
+    if .regex
+      .hit = if index_regex(.string$, .search$) then 1 else 0 fi
+    else
+      .hit = if index(.string$, .search$) then 1 else 0 fi
+    endif
+
+    if .hit == .match
+      .return = .i
       .i += .strings
     endif
   endfor
-
-  .return = .match
 endproc
