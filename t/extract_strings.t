@@ -223,4 +223,6 @@ Remove
 
 removeObject: strings
 
+@ok_selection()
+
 @done_testing()
