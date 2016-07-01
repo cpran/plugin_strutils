@@ -2,9 +2,7 @@ include ../../plugin_utils/procedures/utils.proc
 include ../../plugin_strutils/procedures/find_in_strings.proc
 include ../../plugin_strutils/procedures/replace_strings.proc
 include ../../plugin_strutils/procedures/file_list_full_path.proc
-include ../../plugin_tap/procedures/simple.proc
-
-@normalPrefDir()
+include ../../plugin_tap/procedures/more.proc
 
 @no_plan()
 
@@ -65,5 +63,7 @@ removeObject: selected("Strings"), strings
 for i to total_files
   deleteFile: tmp$[i]
 endfor
+
+@ok_selection()
 
 @done_testing()

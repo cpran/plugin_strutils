@@ -60,4 +60,6 @@ n = Get number of strings
 
 removeObject: strings
 
+@ok_selection()
+
 @done_testing()
