@@ -2,8 +2,6 @@ include ../../plugin_utils/procedures/utils.proc
 include ../../plugin_strutils/procedures/find_in_strings.proc
 include ../../plugin_tap/procedures/more.proc
 
-@normalPrefDir()
-
 @no_plan()
 
 strutils$ = preferencesDirectory$ + "/plugin_strutils/scripts/"
