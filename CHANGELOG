@@ -1,4 +1,6 @@
 - next: # unreleased
+  - New:
+    - Add procedures for using Strings as pseudo-arrays
   - Change:
     - Scripts for full path Strings now keep the IDs of both relative
       and absolute lists in the `.relative` and `.absolute` variables.
