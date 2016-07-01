@@ -18,19 +18,19 @@ for x to length(letters$)
 endfor
 
 @findInStrings: "^e", 1
-@ok: !findInStrings.return,
+@is: findInStrings.return, 0,
   ... "procedure failed to find non existing string literal"
 
 @findInStrings: "e1", 1
-@ok: findInStrings.return = length(letters$) + 1,
+@is: findInStrings.return, length(letters$) + 1,
   ... "procedure found existing string literal"
 
 @findInStrings_regex: "a{3}", 1
-@ok: !findInStrings_regex.return,
+@is: findInStrings_regex.return, 0,
   ... "procedure failed to find non existing regex"
 
 @findInStrings_regex: "^e", 1
-@ok: findInStrings_regex.return = length(letters$) + 1,
+@is: findInStrings_regex.return, length(letters$) + 1,
   ... "procedure found existing regex"
 
 runScript: strutils$ + "find_in_strings.praat", "^e", "matches", 0
@@ -50,5 +50,7 @@ runScript: strutils$ + "find_in_strings.praat", "^e", "matches", 1
   ... "script found existing regex"
 
 removeObject: strings
+
+@ok_selection()
 
 @done_testing()
