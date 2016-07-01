@@ -1,10 +1,12 @@
 - next: # unreleased
+- v0.0.11:
   - New:
     - Add procedures for using Strings as pseudo-arrays
   - Change:
     - Scripts for full path Strings now keep the IDs of both relative
       and absolute lists in the `.relative` and `.absolute` variables.
-    - Outsourced directory normalisation to "utils"
+    - Outsourced directory normalisation to "utils" and removed where not 
+      essential
     - (Breaking) New and more systematic interface for procedures for finding,
       replacing, and extracting strings:
       - Procedures are separated into `<name>` and `<name>_regex`, to mimic
