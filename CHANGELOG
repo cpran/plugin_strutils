@@ -7,6 +7,7 @@
     - Slice as an array procedure no longer modifies original
     - array.proc no longer provides @split. Use the one from
       utils, which now optionally supports Strings arrays
+    - Updated CI script
   - Fix:
     - Minor fixes to documentation and tests
 - v0.0.11:
