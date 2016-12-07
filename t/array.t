@@ -66,7 +66,7 @@ removeObject: array
 
 @split: " ", "correct horse battery staple"
 
-@isnt: variableExists("split.id"), 0,
+@is_true: variableExists("split.id"),
   ... "split creates an object"
 
 selectObject: split.id
