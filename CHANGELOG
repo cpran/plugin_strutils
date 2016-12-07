@@ -1,4 +1,13 @@
 - next: # unreleased
+- v0.0.12:
+  - New:
+    - Added splice and excise to array procedures
+  - Change:
+    - Slice as an array procedure no longer modifies original
+    - array.proc no longer provides @split. Use the one from
+      utils, which now optionally supports Strings arrays
+  - Fix:
+    - Minor fixes to documentation and tests
 - v0.0.11:
   - New:
     - Add procedures for using Strings as pseudo-arrays
