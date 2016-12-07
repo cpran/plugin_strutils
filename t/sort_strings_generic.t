@@ -1,7 +1,7 @@
 include ../../plugin_utils/procedures/utils.proc
 include ../../plugin_tap/procedures/more.proc
 
-@no_plan()
+@plan: 5
 
 runScript: preferencesDirectory$ +
   ... "/plugin_strutils/scripts/create_empty_strings.praat", "empty"

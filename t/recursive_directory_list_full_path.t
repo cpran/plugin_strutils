@@ -3,7 +3,7 @@ include ../../plugin_strutils/procedures/find_in_strings.proc
 include ../../plugin_strutils/procedures/replace_strings.proc
 include ../../plugin_tap/procedures/more.proc
 
-@no_plan()
+@plan: 9
 
 # Scripts
 

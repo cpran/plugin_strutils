@@ -3,7 +3,7 @@ include ../../plugin_utils/procedures/try.proc
 include ../../plugin_strutils/procedures/extract_strings.proc
 include ../../plugin_tap/procedures/more.proc
 
-@no_plan()
+@plan: 33
 
 strutils$ = preferencesDirectory$ + "/plugin_strutils/scripts/"
 runScript: strutils$ + "create_empty_strings.praat", "empty"

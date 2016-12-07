@@ -2,7 +2,7 @@ include ../../plugin_utils/procedures/utils.proc
 include ../../plugin_strutils/procedures/create_empty_strings.proc
 include ../../plugin_tap/procedures/more.proc
 
-@no_plan()
+@plan: 5
 
 @createEmptyStrings: "empty"
 strings = selected("Strings")

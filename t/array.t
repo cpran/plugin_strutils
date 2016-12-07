@@ -2,7 +2,7 @@ include ../../plugin_tap/procedures/more.proc
 include ../../plugin_strutils/procedures/array.proc
 include ../../plugin_utils/procedures/utils.proc
 
-@no_plan()
+@plan: 29
 
 @array()
 @is: numberOfSelected("Strings"), 1,

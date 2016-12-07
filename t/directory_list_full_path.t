@@ -4,7 +4,7 @@ include ../../plugin_strutils/procedures/replace_strings.proc
 include ../../plugin_strutils/procedures/directory_list_full_path.proc
 include ../../plugin_tap/procedures/more.proc
 
-@no_plan()
+@plan: 5
 
 # Procedures
 
