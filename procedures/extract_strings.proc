@@ -62,7 +62,7 @@ endproc
 #! ~~~
 #!
 #! Creates a Strings object which contains a subset of the strings
-#! of an original Strings object. Search queary is a regular expression
+#! of an original Strings object. Search query is a regular expression
 #! pattern. For matching with literal strings, use @extractStrings
 #!
 procedure extractStrings_regex: .regex$, .match
