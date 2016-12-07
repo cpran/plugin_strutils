@@ -23,6 +23,28 @@
 
 include ../../plugin_strutils/procedures/extract_strings.proc
 
+#! ~~~ params
+#! in:
+#!   Search: >
+#!     (sentence) A string to search for
+#!   Extract where string: >
+#!     (option) Whether the extracted strings should be those that match
+#!     the specified string, or those that don't match. Valid values are
+#!     "matches" for positive matching, and "does not match" for negative.
+#!   Use regex: >
+#!     (boolean) Whether matching should interpret the search string as a
+#!     literal or as a regular expression pattern.
+#! selection:
+#!   in:
+#!     strings: 1
+#!   out:
+#!     strings: 1
+#! ~~~
+#!
+#! Creates a Strings object which contains a subset of the strings
+#! of an original Strings object. The newly created object is selected
+#! after execution of this script.
+#!
 form Extract strings...
   sentence Search .*
   optionmenu Extract_where_string 1
