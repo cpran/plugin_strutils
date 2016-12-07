@@ -208,7 +208,8 @@ endproc
 #!     The joined string
 #! ~~~
 #!
-#! Joins all elements of the array into a single string.
+#! Joins all elements of the array into a single string, using the string in
+#! .glue$ as a separator between them.
 #!
 procedure join: .glue$
   .id = selected("Strings")
