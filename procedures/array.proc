@@ -1,3 +1,5 @@
+call # strutils.array 1
+
 #! ~~~ params
 #! ~~~
 #!
@@ -219,80 +221,12 @@ procedure join: .glue$
   .return$ = .return$ - .glue$
 endproc
 
-#! ~~~ params
-#! in:
-#!   .separator$: The literal separator string
-#!   .string$: The string to split
-#! out:
-#!   .return$[]: The split string fragments
-#!   .length: The number of string fragments
-#!   .id: The ID of a Strings representation of the array
-#! ~~~
-#!
-#! ~~~ praat synopsis
-#! @split: " ", "correct horse battery staple"
-#! selectObject: split.id
-#! for i to do("Get number of strings")
-#!   @shift()
-#!   appendInfoLine: shift.return$
-#! endfor
-#! removeObject: split.id
-#! # Prints
-#! #   correct
-#! #   horse
-#! #   battery
-#! #   staple
-#! ~~~
-#!
-#! Takes the contents of `string$` and separates it into a number of smaller
-#! strings using the string in `separator$` as the separator string. The
-#! separator can be longer than one character. The match is made using it
-#! as a string literal.
-#!
-#! For compatibility with the version of this procedure in the "utils" plugin,
-#! split substrings are stored in the `.return$[]` indexed variable,
-#! which will have a length equal to the value in `.length`. Additionally,
-#! they are pushed to a Strings-array whose ID is stored in `.id`.
-#!
-procedure split: .sep$, .str$
-  .n = numberOfSelected()
-  for .i to .n
-    .id[.i] = selected(.i)
-  endfor
-
-  @array()
-  .id = array.id
-
-  .seplen = length(.sep$)
-  .length = 0
-  repeat
-    .strlen = length(.str$)
-    .sep = index(.str$, .sep$)
-    if .sep > 0
-      .part$ = left$(.str$, .sep-1)
-      .str$ = mid$(.str$, .sep+.seplen, .strlen)
-    else
-      .part$ = .str$
-    endif
-    .length = .length+1
-    .return$[.length] = .part$
-
-    # For backwards compatibility only! Will disappear!
-    .array$[.length] = .part$
-
-    if .id
-      @push$: .part$
-    endif
-  until .sep = 0
-
-  nocheck selectObject: undefined
-  for .i to .n
-    plusObject: .id[.i]
-  endfor
-endproc
-
 procedure _array_negative_index: .total, .index
   if .index < 0
     .index = .total + 1 + .index
   endif
+endproc
+
+procedure # .key$, .value
+  .'.key$' = .value
 endproc
