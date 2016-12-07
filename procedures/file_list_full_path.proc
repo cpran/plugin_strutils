@@ -44,7 +44,7 @@ include ../../plugin_strutils/procedures/replace_strings.proc
 #! object is kept and its ID stored in `.relative`. If false, it is removed
 #! and that variable set to `undefined`.
 #!
-#! The selection will include all generated tables, in which the one with
+#! The selection will include all generated Strings, in which the one with
 #! full paths will be the most recent. The ID of this object will also be
 #! stored in `.id`, and in `.absolute`, for contrast with `.relative`.
 #!
