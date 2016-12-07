@@ -89,6 +89,57 @@ removeObject: split.id
 
 removeObject: array.id
 
+items = 10
+
+@array()
+backup = array.id
+for i to items
+  @push$: string$(i)
+endfor
+x = do("Get number of strings") / 4 div 1
+
+@restore()
+@slice: x, x + x
+@is: do("Get number of strings"), x + 1, "slice with positive range"
+selectObject: list
+@is: do("Get number of strings"), items, "slice does not modify original"
+removeObject: slice.return
+
+@restore()
+@excise: x, x + x
+@is: do("Get number of strings"), x + 1, "excise with positive range"
+selectObject: list
+@is: do("Get number of strings"), items - (x + 1), "excise modifies original"
+removeObject: slice.return
+
+@restore()
+@slice: x, x
+@is: do("Get number of strings"), 1, "slice with no range"
+removeObject: slice.return
+
+@restore()
+@slice: x, x - 1
+@is: do("Get number of strings"), 0, "slice with negative range"
+removeObject: slice.return
+
+@restore()
+@slice: x, -1
+@is: do("Get number of strings"), items + 1 - x, "slice to negative index"
+removeObject: slice.return
+
+@restore()
+@slice: -(x + x), -1
+@is: do("Get number of strings"), x + x, "slice with two negative indices"
+removeObject: slice.return
+
+removeObject: list, backup
+
 @ok_selection()
 
 @done_testing()
+
+procedure restore
+  nocheck removeObject: list
+  selectObject: backup
+  list = Copy: selected$("Strings")
+endproc
