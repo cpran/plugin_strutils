@@ -118,18 +118,82 @@ endproc
 #!     The final index
 #! out:
 #!   .return: >
-#!     The ID of the removed array
+#!     The ID of the new array
 #! ~~~
 #!
-#! Remove the items in the array existing between the first and last provided
-#! indices.
+#! Creates a Strings object as a subset of the selected Strings, with the
+#! strings between the first and last provided. The original Strings object
+#! is not modified in the process.
 #!
 procedure slice: .from, .to
   .id = selected("Strings")
+  .n = Get number of strings
 
-  .return = Extract part: .from, .to
-  for .i from .from to .to
-    Remove string: .i
+  @_array_negative_index: .n, .from
+  .from = '_array_negative_index.index'
+
+  @_array_negative_index: .n, .to
+  .to = '_array_negative_index.index'
+
+  if .to >= .from
+    .return = Extract part: .from, .to
+  else
+    @array()
+    .return = array.id
+  endif
+  Rename: selected$("Strings") - "_part" + "_slice"
+endproc
+#! ~~~ params
+#! in:
+#!   .from: >
+#!     The starting index
+#!   .to: >
+#!     The final index
+#! out:
+#!   .return: >
+#!     The ID of the removed array
+#! ~~~
+#!
+#! Similar to `@slice`, but this procedure also removes the extracted strings
+#! from the original.
+#!
+procedure excise: .from, .to
+  @slice: .from, .to
+  selectObject: slice.id
+  for .j from slice.from to slice.to
+    Remove string: slice.from
+  endfor
+  selectObject: slice.return
+  .return = Rename:
+    ... replace_regex$(selected$("Strings"), "_[^_]+", "_excise", 1)
+endproc
+
+#! ~~~ params
+#! in:
+#!   .after: >
+#!     The position in the selected Strings after which the target array
+#!     should be inserted.
+#!   .strings: >
+#!     The ID of the target array
+#! out:
+#!   .return: >
+#!     The ID of the modified array (the one initially selected)
+#! ~~~
+#!
+#! Insert the contents of an existing array into the selected array
+#!
+procedure splice: .at, .strings
+  .return = selected("Strings")
+  @_array_negative_index: do("Get number of strings"), .at
+  .at = '_array_negative_index.index'
+
+  selectObject: .strings
+  .nn = Get number of strings
+
+  selectObject: .return
+  for .j from 0 to .n - 1
+    .i = .nn - .j
+    Insert string: .at, Object_'.strings'$[.i]
   endfor
 endproc
 
@@ -225,4 +289,10 @@ procedure split: .sep$, .str$
   for .i to .n
     plusObject: .id[.i]
   endfor
+endproc
+
+procedure _array_negative_index: .total, .index
+  if .index < 0
+    .index = .total + 1 + .index
+  endif
 endproc
