@@ -15,11 +15,14 @@ array = array.id
 
 @is: do("Get number of strings"), 1,
   ... "can push number"
+@is: number(Object_'array'$[1]), 4,
+  ... "pushed number is correct"
 
 @push$: "3"
-
 @is: do("Get number of strings"), 2,
   ... "can push string"
+@is$: Object_'array'$[2], "3",
+  ... "pushed string is correct"
 
 @pop()
 
@@ -48,10 +51,16 @@ array = array.id
 @is: do("Get number of strings"), 1,
   ... "can unshift string"
 
+@is$: Object_'array'$[1], "a",
+  ... "unshifted string is correct"
+
 @unshift: 2
 
 @is: do("Get number of strings"), 2,
   ... "can unshift number"
+
+@is$: Object_'array'$[1], "2",
+  ... "unshifted number is correct"
 
 removeObject: array
 
