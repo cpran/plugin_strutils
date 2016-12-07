@@ -74,9 +74,9 @@ selectObject: split.id
 @is: do("Get number of strings"), 4,
   ... "split string into correct number of parts"
 
-@join: " "
+@join: "|"
 
-@is$: join.return$, "correct horse battery staple",
+@is$: join.return$, "correct|horse|battery|staple",
   ... "join strings in array"
 
 removeObject: split.id
