@@ -4,7 +4,7 @@ variables:
   CPRAN_PREF_DIR: "/builds/$CI_PROJECT_NAMESPACE"
 
 before_script:
-  - cpran init --notest --reinstall --nogit
+  - cpran init --notest --reinstall
   - cpran update
   - cpran deps | cpran --yes install --notest -
 
