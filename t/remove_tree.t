@@ -4,7 +4,7 @@ include ../../plugin_strutils/procedures/replace_strings.proc
 include ../../plugin_strutils/procedures/directory_list_full_path.proc
 include ../../plugin_tap/procedures/more.proc
 
-@plan: 1
+@plan: 2
 files = 5
 
 @mktemp: "remove_XXXXXX"
