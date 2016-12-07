@@ -2,6 +2,7 @@
 - v0.0.12:
   - New:
     - Added splice and excise to array procedures
+    - Added a script to remove directory trees. Use with care!
   - Change:
     - Slice as an array procedure no longer modifies original
     - array.proc no longer provides @split. Use the one from
