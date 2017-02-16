@@ -1,4 +1,12 @@
 - next: # unreleased
+- v0.0.13:
+  - New:
+    - Added a procedure to create Strings objects from multiline
+      strings.
+  - Fixes:
+    - Added missing documentation for some procedures
+      (eg. `@findInStrings`)
+    - Added copyright information to some files
 - v0.0.12:
   - New:
     - Added splice and excise to array procedures
