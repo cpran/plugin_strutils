@@ -15,11 +15,12 @@
 # You should have received a copy of the GNU General Public License
 # along with strutils. If not, see <http://www.gnu.org/licenses/>.
 #
-# Copyright 2014-2016 Jose Joaquin Atria
+# Copyright 2014-2017 Jose Joaquin Atria
 
 #! ~~~ params
 #! in:
 #!   .search$: Literal string to match
+#!   .type: Specify a positive or a negative search
 #! out:
 #!   .return: Index of first matching string if found, 0 if not
 #! selection:
@@ -30,14 +31,15 @@
 #! Searches for a literal string in a Strings object. For matching with regular
 #! expressions, use @findInStrings_regex
 #!
-procedure findInStrings (.search$, .match)
-  @_findInStrings: .search$, .match, 0
+procedure findInStrings (.search$, .type)
+  @_findInStrings: .search$, .type, 0
   .return = '_findInStrings.return'
 endproc
 
 #! ~~~ params
 #! in:
 #!   .regex$:  Regular expression pattern
+#!   .type: Specify a positive or a negative search
 #! out:
 #!   .return: Index of first matching string if found, 0 if not
 #! selection:
@@ -48,14 +50,15 @@ endproc
 #! Searches a Strings object for matches to a regular expression pattern. For
 #! matches with literal strings, use @findInStrings.
 #!
-procedure findInStrings_regex (.regex$, .match)
-  @_findInStrings: .regex$, .match, 1
+procedure findInStrings_regex (.regex$, .type)
+  @_findInStrings: .regex$, .type, 1
   .return = '_findInStrings.return'
 endproc
 
 #! ~~~ params
 #! in:
 #!   .search$:  Query string
+#!   .type: Specify a positive or a negative search
 #!   .regex: >
 #!     Boolean flag. If true, interpret query string as regular expression
 #! out:
@@ -71,7 +74,7 @@ endproc
 #! string), or regular expression patterns. This behaviour can be adjusted
 #! by modifying the value of `.regex`.
 #!
-procedure _findInStrings (.search$, .match, .regex)
+procedure _findInStrings (.search$, .type, .regex)
   .id = selected("Strings")
   .strings = Get number of strings
 
@@ -85,7 +88,7 @@ procedure _findInStrings (.search$, .match, .regex)
       .hit = if index(.string$, .search$) then 1 else 0 fi
     endif
 
-    if .hit == .match
+    if .hit == .type
       .return = .i
       .i += .strings
     endif
