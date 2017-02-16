@@ -1,6 +1,12 @@
 call # strutils.array 1
 
 #! ~~~ params
+#! out:
+#!   .id: >
+#!     The ID of the created array object
+#! selection:
+#!   out:
+#!     strings: 1
 #! ~~~
 #!
 #! Create a Strings as a pseudo-array
@@ -15,6 +21,9 @@ endproc
 #! in:
 #!   .val: >
 #!     The number to add to the array
+#! selection:
+#!   in:
+#!     strings: 1
 #! ~~~
 #!
 #! Append the provided numeric value to the end of the array
@@ -27,6 +36,9 @@ endproc
 #! in:
 #!   .val$: >
 #!     The string to add to the array
+#! selection:
+#!   in:
+#!     strings: 1
 #! ~~~
 #!
 #! Append the provided string value to the end of the array
@@ -45,6 +57,9 @@ endproc
 #!     The removed value, as a string
 #!   .return: >
 #!     The removed value, as a number
+#! selection:
+#!   in:
+#!     strings: 1
 #! ~~~
 #!
 #! Remove the last item in the array
@@ -66,6 +81,9 @@ endproc
 #! in:
 #!   .val: >
 #!     The number to add to the array
+#! selection:
+#!   in:
+#!     strings: 1
 #! ~~~
 #!
 #! Append the provided numeric value to the beginning of the array
@@ -78,6 +96,9 @@ endproc
 #! in:
 #!   .val$: >
 #!     The string to add to the array
+#! selection:
+#!   in:
+#!     strings: 1
 #! ~~~
 #!
 #! Append the provided string value to the beginning of the array
@@ -95,6 +116,9 @@ endproc
 #!     The removed value, as a string
 #!   .return: >
 #!     The removed value, as a number
+#! selection:
+#!   in:
+#!     strings: 1
 #! ~~~
 #!
 #! Remove the first item in the array
@@ -121,6 +145,9 @@ endproc
 #! out:
 #!   .return: >
 #!     The ID of the new array
+#! selection:
+#!   in:
+#!     strings: 1
 #! ~~~
 #!
 #! Creates a Strings object as a subset of the selected Strings, with the
@@ -154,6 +181,9 @@ endproc
 #! out:
 #!   .return: >
 #!     The ID of the removed array
+#! selection:
+#!   in:
+#!     strings: 1
 #! ~~~
 #!
 #! Similar to `@slice`, but this procedure also removes the extracted strings
@@ -180,6 +210,9 @@ endproc
 #! out:
 #!   .return: >
 #!     The ID of the modified array (the one initially selected)
+#! selection:
+#!   in:
+#!     strings: 1
 #! ~~~
 #!
 #! Insert the contents of an existing array into the selected array
@@ -206,6 +239,9 @@ endproc
 #! out:
 #!   .return$: >
 #!     The joined string
+#! selection:
+#!   in:
+#!     strings: 1
 #! ~~~
 #!
 #! Joins all elements of the array into a single string, using the string in
