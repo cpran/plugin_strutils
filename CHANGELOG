@@ -1,4 +1,6 @@
 - next: # unreleased
+  - Changes:
+    - Simplified creation of empty Strings objects (thanks @rolandomunoz!)
 - v0.0.13:
   - New:
     - Added a procedure to create Strings objects from multiline
