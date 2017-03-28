@@ -17,12 +17,6 @@
 #
 # Copyright 2014-2016 Jose Joaquin Atria
 
-include ../../plugin_utils/procedures/utils.proc
-
-if !variableExists("strutils.loop_failsafe")
-  strutils.loop_failsafe = 100
-endif
-
 #! ~~~ params
 #! in:
 #!   .name$: The name of the new Strings object
@@ -36,17 +30,6 @@ endif
 #! Creates an empty Strings object.
 #!
 procedure createEmptyStrings (.name$)
-  .i = 0
-  repeat
-    @pwgen(5)
-    .str$ = pwgen.return$
-    @normaliseDirectory: defaultDirectory$
-    .dir$ = normaliseDirectory.return$
-    .id = Create Strings as file list: .name$, .dir$ + .str$ + "*" + .str$
-    .strings = Get number of strings
-    if .strings
-      removeObject: .id
-    endif
-    .i += 1
-  until !.strings or .i >= strutils.loop_failsafe
+  Create Strings as characters: ""
+  Rename: .name$
 endproc
