@@ -2,7 +2,7 @@ include ../../plugin_tap/procedures/more.proc
 include ../../plugin_strutils/procedures/array.proc
 include ../../plugin_utils/procedures/utils.proc
 
-@plan: 29
+@plan: 34
 
 @array()
 @is: numberOfSelected("Strings"), 1,
@@ -134,6 +134,35 @@ removeObject: slice.return
 removeObject: slice.return
 
 removeObject: list, backup
+
+list = Create Strings as tokens: "zoo foo baz bar foo bar"
+original = Get number of strings
+
+@uniq()
+
+@is_true: numberOfSelected("Strings"),
+  ... "has a Strings selected"
+
+sorted = Get number of strings
+
+@isnt: uniq.id, list,
+  ... "created new Strings object"
+
+@is: original, sorted + 2,
+  ... "removed duplicate strings"
+
+@is$: Object_'uniq.id'$[sorted], "zoo",
+  ... "order of strings is not maintained"
+
+removeObject: list, uniq.id
+
+@array()
+@uniq()
+
+@is: do("Get number of strings"), 0,
+  ... "uniq empty strings is empty strings"
+
+removeObject: array.id, uniq.id
 
 @ok_selection()
 

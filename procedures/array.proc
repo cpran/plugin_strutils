@@ -283,6 +283,38 @@ procedure _array_negative_index: .total, .index
   endif
 endproc
 
+#! ~~~ params
+#! out:
+#!   .id: >
+#!     The ID of the created Strings object
+#! selection:
+#!   in:
+#!     strings: 1
+#!   out:
+#!     strings: 1
+#! ~~~
+#!
+#! Create a new Strings object with the set of unique strings from the
+#! originally selected Strings object. The original Strings object will
+#! be automatically sorted as part of the process, so the partial order
+#! of the strings will not be maintained.
+#!
+#! If you need to find unique strings while maintain the partial order
+#! of items in the Strings object, prefer the `@removeDuplicateStrings`
+#! procedure in this plugin.
+#!
+procedure uniq ()
+  if do("Get number of strings")
+    .cat = To Categories
+    .ucat = To unique Categories
+    To Strings
+    removeObject: .cat, .ucat
+  else
+    Create Strings as characters: ""
+  endif
+  .id = selected("Strings")
+endproc
+
 procedure # .key$, .value
   .'.key$' = .value
 endproc

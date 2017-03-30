@@ -1,0 +1,59 @@
+# This script is part of the strutils CPrAN plugin for Praat.
+# The latest version is available through CPrAN or at
+# <http://cpran.net/plugins/strutils>
+#
+# The strutils plugin is free software: you can redistribute it
+# and/or modify it under the terms of the GNU General Public
+# License as published by the Free Software Foundation, either
+# version 3 of the License, or (at your option) any later version.
+#
+# The strutils plugin is distributed in the hope that it will be
+# useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+# of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with strutils. If not, see <http://www.gnu.org/licenses/>.
+#
+# Copyright 2017 Jose Joaquin Atria
+
+#! ~~~ params
+#! out:
+#!   .id: ID of new Strings object
+#! selection:
+#!   in:
+#!     strings: 1
+#!   out:
+#!     strings: 1
+#! ~~~
+#!
+#! Creates a new Strings object containing the subset of unique strings
+#! from the originally selected Strings object. This procedure does not
+#! require the original Strings object to be sorted, and the order of the
+#! strings will not be affected (other than by the removal of those that
+#! are repeated).
+#!
+#! If it is not necessary to maintain the order of the strings, prefer the
+#! `@uniq` procedure in `array.proc`, distributed as part of this plugin,
+#! which is significantly faster.
+#!
+procedure removeDuplicateStrings ()
+  .id = selected("Strings")
+  .name$ = selected$("Strings")
+  .n = Get number of strings
+  .hash = Create Table without column names: "hash", 1, 1
+  for .i to .n
+    .key$ = Object_'.id'$[.i]
+    if !do("Get column index...", .key$)
+      Append column: .key$
+    endif
+  endfor
+
+  if Object_'.hash'.ncol > 1
+    Create Strings as tokens: extractLine$(do$("List...", 0), "?")
+  else
+    Create Strings as tokens: ""
+  endif
+  .id = Rename: .name$ + "_unique"
+  removeObject: .hash
+endproc
