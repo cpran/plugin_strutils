@@ -1,4 +1,6 @@
 - next: # unreleased
+  - New:
+    - Add procedures to remove duplicated strings
   - Changes:
     - Simplified creation of empty Strings objects (thanks @rolandomunoz!)
 - v0.0.13:
