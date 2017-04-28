@@ -38,7 +38,8 @@ procedure stringsFromString (.name$, .string$)
   .id = selected("Strings")
   for .i to split.length
     if !(.i == split.length and split.return$[.i] == "")
-      Insert string: 0, split.return$[.i]
+      .end = Get number of strings
+      Insert string: .end + 1, split.return$[.i]
     endif
   endfor
 endproc
