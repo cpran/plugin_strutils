@@ -1,6 +1,9 @@
 - next: # unreleased
   - New:
     - Add procedures to remove duplicated strings
+  - Fix:
+    - Crating String from string no longer uses 0 as "At position" argument
+      supporting older versions of Praat
   - Changes:
     - Simplified creation of empty Strings objects (thanks @rolandomunoz!)
 - v0.0.13:
