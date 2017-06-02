@@ -1,4 +1,5 @@
 - next: # unreleased
+- v0.0.14:
   - New:
     - Add procedures to remove duplicated strings
   - Fix:
