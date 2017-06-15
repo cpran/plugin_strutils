@@ -33,13 +33,9 @@ include ../../plugin_strutils/procedures/create_empty_strings.proc
 #! Creates a Strings object reading lines from a string
 #!
 procedure stringsFromString (.name$, .string$)
-  @split: newline$, .string$
-  @createEmptyStrings: .name$
-  .id = selected("Strings")
-  for .i to split.length
-    if !(.i == split.length and split.return$[.i] == "")
-      .end = Get number of strings
-      Insert string: .end + 1, split.return$[.i]
-    endif
-  endfor
+  @mktempfile: "str2str_XXXXXXXX", ".tmp"
+  writeFile: mktempfile.return$, .string$
+  Read Strings from raw text file: mktempfile.return$
+  Rename: .name$
+  deleteFile: mktempfile.return$
 endproc
