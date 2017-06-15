@@ -50,7 +50,8 @@ procedure removeDuplicateStrings ()
   endfor
 
   if Object_'.hash'.ncol > 1
-    Create Strings as tokens: extractLine$(do$("List...", 0), "?")
+    Create Strings as tokens:
+      ... replace_regex$(extractLine$(do$("List...", 0), "?"), "\t", " ", 0)
   else
     Create Strings as tokens: ""
   endif
