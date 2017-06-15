@@ -1,4 +1,8 @@
 - next: # unreleased
+  - Fix:
+    - Corrected an error with removal of duplicate strings in recent
+      versions of Praat
+    - Strings from strings procedure made more robust
 - v0.0.14:
   - New:
     - Add procedures to remove duplicated strings
