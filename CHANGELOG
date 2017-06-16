@@ -1,4 +1,8 @@
 - next: # unreleased
+- v0.0.16
+  - Fix:
+    - Fixed an issue with object deletion under special circumstances
+- v0.0.15
   - Fix:
     - Corrected an error with removal of duplicate strings in recent
       versions of Praat
