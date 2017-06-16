@@ -97,12 +97,17 @@ nocheck Append
 # better to discard them.
 # See https://github.com/praat/praat/issues/58
 if numberOfSelected("Strings") > 1
-  runScript: "create_empty_strings.praat", name$
+  Create Strings as tokens: ""
+  Rename: name$
 endif
 new = selected("Strings")
 
 @restoreSavedSelection: selection
-Remove
+minusObject: new
+if numberOfSelected()
+  Remove
+endif
+
 removeObject: selection
 selectObject: new
 if sort
